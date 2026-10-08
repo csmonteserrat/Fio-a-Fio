@@ -1,0 +1,46 @@
+# Projeto Fio a Fio, versão 1.0 · Blueprint do Render
+# No Render: New > Blueprint, escolha este repositório e preencha as variáveis.
+services:
+  - type: web
+    name: fioafio-api
+    runtime: python
+    plan: free
+    region: virginia
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/saude
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.1
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: WEB_ORIGIN
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-sonnet-5-5
+
+  - type: web
+    name: fioafio-site
+    runtime: static
+    buildCommand: sh web/build.sh
+    staticPublishPath: web
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: API_URL
+        sync: false
+      - key: AVALIADOR_EMAIL
+        value: avaliador@fioafio.app
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

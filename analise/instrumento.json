@@ -1,0 +1,650 @@
+{
+ "MACROS": [
+  {
+   "id": "vac",
+   "label": "Vacinação"
+  },
+  {
+   "id": "dm",
+   "label": "Diabetes"
+  },
+  {
+   "id": "has",
+   "label": "Hipertensão arterial"
+  },
+  {
+   "id": "sm",
+   "label": "Saúde mental"
+  },
+  {
+   "id": "ad",
+   "label": "Álcool e outras drogas"
+  },
+  {
+   "id": "ist",
+   "label": "IST / HIV / PrEP"
+  },
+  {
+   "id": "pf",
+   "label": "Planejamento familiar"
+  },
+  {
+   "id": "pn",
+   "label": "Pré-natal e saúde materna"
+  },
+  {
+   "id": "am",
+   "label": "Amamentação"
+  },
+  {
+   "id": "ido",
+   "label": "Saúde do idoso / quedas"
+  },
+  {
+   "id": "can",
+   "label": "Câncer: rastreio e prevenção"
+  },
+  {
+   "id": "ali",
+   "label": "Alimentação e obesidade"
+  },
+  {
+   "id": "tab",
+   "label": "Tabagismo"
+  },
+  {
+   "id": "den",
+   "label": "Dengue / arboviroses"
+  },
+  {
+   "id": "tb",
+   "label": "Tuberculose"
+  },
+  {
+   "id": "med",
+   "label": "Uso correto de medicamentos"
+  },
+  {
+   "id": "bucal",
+   "label": "Saúde bucal"
+  },
+  {
+   "id": "viol",
+   "label": "Violência doméstica"
+  },
+  {
+   "id": "outro",
+   "label": "Outro / não mapeado"
+  }
+ ],
+ "Q1T": [
+  {
+   "cat": "Criança e família",
+   "items": [
+    {
+     "id": "vac",
+     "label": "Vacinação",
+     "macro": "vac"
+    },
+    {
+     "id": "amam",
+     "label": "Amamentação e alimentação infantil",
+     "macro": "am"
+    },
+    {
+     "id": "febre",
+     "label": "Febre",
+     "macro": "outro"
+    },
+    {
+     "id": "desenv",
+     "label": "Desenvolvimento infantil",
+     "macro": "outro"
+    }
+   ]
+  },
+  {
+   "cat": "Saúde da mulher",
+   "items": [
+    {
+     "id": "pf",
+     "label": "Planejamento familiar e contracepção",
+     "macro": "pf"
+    },
+    {
+     "id": "pren",
+     "label": "Pré-natal",
+     "macro": "pn"
+    },
+    {
+     "id": "prev",
+     "label": "Preventivo e mamografia",
+     "macro": "can"
+    },
+    {
+     "id": "menop",
+     "label": "Menopausa",
+     "macro": "outro"
+    },
+    {
+     "id": "viol",
+     "label": "Violência doméstica",
+     "macro": "viol"
+    }
+   ]
+  },
+  {
+   "cat": "Saúde do homem",
+   "items": [
+    {
+     "id": "sexm",
+     "label": "Saúde sexual masculina",
+     "macro": "ist"
+    },
+    {
+     "id": "prost",
+     "label": "Câncer de próstata",
+     "macro": "can"
+    },
+    {
+     "id": "smh",
+     "label": "Saúde mental do homem",
+     "macro": "sm"
+    }
+   ]
+  },
+  {
+   "cat": "Doenças crônicas",
+   "items": [
+    {
+     "id": "dm",
+     "label": "Diabetes",
+     "macro": "dm"
+    },
+    {
+     "id": "has",
+     "label": "Pressão alta",
+     "macro": "has"
+    },
+    {
+     "id": "obes",
+     "label": "Obesidade e peso",
+     "macro": "ali"
+    },
+    {
+     "id": "col",
+     "label": "Colesterol e coração",
+     "macro": "has"
+    }
+   ]
+  },
+  {
+   "cat": "Saúde mental",
+   "items": [
+    {
+     "id": "ans",
+     "label": "Ansiedade e estresse",
+     "macro": "sm"
+    },
+    {
+     "id": "dep",
+     "label": "Depressão",
+     "macro": "sm"
+    },
+    {
+     "id": "alc",
+     "label": "Álcool e outras drogas",
+     "macro": "ad"
+    },
+    {
+     "id": "smad",
+     "label": "Saúde mental na adolescência",
+     "macro": "sm"
+    }
+   ]
+  },
+  {
+   "cat": "ISTs e saúde sexual",
+   "items": [
+    {
+     "id": "ists",
+     "label": "ISTs (sífilis, gonorreia, herpes)",
+     "macro": "ist"
+    },
+    {
+     "id": "hiv",
+     "label": "HIV/AIDS",
+     "macro": "ist"
+    },
+    {
+     "id": "prep",
+     "label": "PrEP e PEP",
+     "macro": "ist"
+    }
+   ]
+  },
+  {
+   "cat": "Alimentação e estilo de vida",
+   "items": [
+    {
+     "id": "alim",
+     "label": "Alimentação saudável",
+     "macro": "ali"
+    },
+    {
+     "id": "ativ",
+     "label": "Atividade física",
+     "macro": "ali"
+    },
+    {
+     "id": "tabag",
+     "label": "Tabagismo",
+     "macro": "tab"
+    }
+   ]
+  },
+  {
+   "cat": "Saúde do idoso",
+   "items": [
+    {
+     "id": "qued",
+     "label": "Quedas",
+     "macro": "ido"
+    },
+    {
+     "id": "medic",
+     "label": "Uso de medicamentos",
+     "macro": "med"
+    },
+    {
+     "id": "dem",
+     "label": "Demência e Alzheimer",
+     "macro": "ido"
+    }
+   ]
+  },
+  {
+   "cat": "Doenças do território",
+   "items": [
+    {
+     "id": "deng",
+     "label": "Dengue",
+     "macro": "den"
+    },
+    {
+     "id": "tb",
+     "label": "Tuberculose",
+     "macro": "tb"
+    },
+    {
+     "id": "lept",
+     "label": "Leptospirose",
+     "macro": "outro"
+    }
+   ]
+  },
+  {
+   "cat": "Saúde bucal",
+   "items": [
+    {
+     "id": "carie",
+     "label": "Cárie: por que aparece e como evitar",
+     "macro": "bucal"
+    },
+    {
+     "id": "gengiva",
+     "label": "Gengiva que sangra: o que significa",
+     "macro": "bucal"
+    },
+    {
+     "id": "bucinf",
+     "label": "Dentes de bebês e crianças: cuidados desde o primeiro dente",
+     "macro": "bucal"
+    },
+    {
+     "id": "protese",
+     "label": "Dentadura e prótese: cuidados e como conseguir pelo SUS",
+     "macro": "bucal"
+    },
+    {
+     "id": "cboca",
+     "label": "Câncer de boca: sinais de alerta",
+     "macro": "bucal"
+    },
+    {
+     "id": "gravid",
+     "label": "Dentista na gravidez pode?",
+     "macro": "bucal"
+    },
+    {
+     "id": "fluor",
+     "label": "Flúor: mito ou verdade",
+     "macro": "bucal"
+    }
+   ]
+  },
+  {
+   "cat": "Outros temas",
+   "items": [
+    {
+     "id": "sus",
+     "label": "Como usar o SUS",
+     "macro": "outro"
+    },
+    {
+     "id": "plant",
+     "label": "Plantas medicinais",
+     "macro": "outro"
+    }
+   ]
+  }
+ ],
+ "OPT": {
+  "coleta": [
+   "Na tela, com entrevistador",
+   "Papel na sala de espera",
+   "Oral com ACS",
+   "Oral com profissional"
+  ],
+  "idade": [
+   "Menos de 18",
+   "18 a 29",
+   "30 a 44",
+   "45 a 59",
+   "60 ou mais"
+  ],
+  "genero": [
+   "Feminino",
+   "Masculino",
+   "Não-binário / Outro",
+   "Prefiro não responder"
+  ],
+  "tempoT": [
+   "Menos de 1 ano",
+   "1 a 5 anos",
+   "5 a 10 anos",
+   "Mais de 10 anos"
+  ],
+  "tv": [
+   "Sim, sempre",
+   "Às vezes",
+   "Raramente",
+   "Não"
+  ],
+  "q9": [
+   "Histórias curtas e animadas",
+   "Como usar os serviços do SUS",
+   "Dicas de alimentação e prevenção",
+   "Depoimentos da comunidade",
+   "Direitos do paciente"
+  ],
+  "tempoP": [
+   "Menos de 1 ano",
+   "1 a 3 anos",
+   "4 a 10 anos",
+   "Mais de 10 anos"
+  ],
+  "familias": [
+   "Menos de 100",
+   "100 a 150",
+   "Mais de 150"
+  ],
+  "barreiras": [
+   "Medo de descobrir algo grave",
+   "Vergonha ou constrangimento",
+   "Acha que não precisa",
+   "Dificuldade de consulta / espera",
+   "Horário incompatível com trabalho",
+   "Descrença no serviço",
+   "Influência de familiares ou amigos",
+   "Crença religiosa ou cultural"
+  ],
+  "area": [
+   "Médico",
+   "Enfermeiro",
+   "Técnico de Enfermagem",
+   "Cirurgião-Dentista",
+   "Auxiliar de Saúde Bucal",
+   "Nutricionista",
+   "Fisioterapeuta",
+   "Assistente Social",
+   "Educador Físico",
+   "Administrativo",
+   "Coordenadora da Unidade",
+   "Outra"
+  ],
+  "obst": [
+   "Falta de informação",
+   "Desinformação",
+   "Barreiras financeiras e de acesso",
+   "Influência familiar e social",
+   "Vínculo fraco com o serviço",
+   "Falta de tempo ou prioridade",
+   "Medo de diagnóstico ou tratamento",
+   "Crenças culturais ou religiosas"
+  ],
+  "revisao": [
+   "Sim, com prazer",
+   "Talvez",
+   "Prefiro não, indico colega",
+   "Não"
+  ]
+ },
+ "STAFF": {
+  "Agente Comunitário de Saúde": [
+   "Elena Mara Dias de Oliveira",
+   "Eloisa Helena dos Santos",
+   "Gilmara Barbosa",
+   "Gisele Costa",
+   "Graziela Regina Barbosa",
+   "Luciana Ferreira",
+   "Rosana Costa Machado",
+   "Sabrina Mari da Fonseca de Souza",
+   "Vanuza Soares"
+  ],
+  "Médico": [
+   "Gabriela dos Santos Marques",
+   "Gabriela Ribeiro Medeiros",
+   "Gustavo Berje Armelin",
+   "Jorge Pascual Asencio Rondon"
+  ],
+  "Enfermeiro": [
+   "Aline Oliveira Albuquerque",
+   "Andreia da Gama Almeida",
+   "Gabriela Schuck Kern",
+   "Jessica Hegedeus Camargo",
+   "Jessicamila dos Santos Pais Iglesias",
+   "Thais Borges da Silva"
+  ],
+  "Técnico de Enfermagem": [
+   "Andrea Carla da Silva",
+   "Claudia Albertina Marcal Nunes",
+   "Cristiani Margarida da Silva",
+   "Eunice Cristine Patricio",
+   "Gizele Silveira e Melo",
+   "Maria Eduarda Cabral",
+   "Tamara Benedetti Heidrich"
+  ],
+  "Cirurgião-Dentista": [
+   "Caio Cesar Borges de Oliveira",
+   "Deborah de Oliveira Renzetti",
+   "Marcos Augusto Farias e Silva"
+  ],
+  "Auxiliar de Saúde Bucal": [
+   "Bruna de Liz Hillesheim",
+   "Nathalia Celestino Silva"
+  ],
+  "Nutricionista": [
+   "Mayumi Marcela Ujissato"
+  ],
+  "Fisioterapeuta": [
+   "Cledion Meirelles dos Santos"
+  ],
+  "Assistente Social": [
+   "Kamila Branco Carlos"
+  ],
+  "Educador Físico": [
+   "Jackson Rodrigo Ricardo"
+  ],
+  "Administrativo": [
+   "Leila Gabriela Mateus Zanoni",
+   "Mayara Mara de Souza",
+   "Rafaela Felipe",
+   "Shirlei Soraia Mathias"
+  ],
+  "Coordenadora da Unidade": [
+   "Flaviane Silveira Fialho"
+  ]
+ },
+ "ANON": "Prefere não se identificar",
+ "NUC": {
+  "espont": "Temas espontâneos",
+  "mitos": "Mitos e fofocas de portão",
+  "muros": "Muros (situações-limite)",
+  "tabu": "Temas tabu",
+  "inedito": "Inédito viável",
+  "pedidos": "Pedidos de vídeo",
+  "fora": "Temas fora da lista",
+  "metaforas": "Metáforas visuais",
+  "cenas": "Cenas para codificação",
+  "territorio": "Território e cultura",
+  "conversa": "Quando se fala de saúde",
+  "tocha": "A Tocha",
+  "abismo": "Abismo técnico-popular",
+  "bancario": "Postura bancária",
+  "sugest": "Sugestões"
+ },
+ "UDEF": [
+  [
+   "q1",
+   "q5",
+   "fora"
+  ],
+  [
+   "q1",
+   "q6",
+   "mitos"
+  ],
+  [
+   "q1",
+   "q7",
+   "muros"
+  ],
+  [
+   "q1",
+   "q10",
+   "pedidos"
+  ],
+  [
+   "q1",
+   "q11",
+   "tocha"
+  ],
+  [
+   "q1",
+   "q12",
+   "sugest"
+  ],
+  [
+   "q2",
+   "q3",
+   "espont",
+   "tcl"
+  ],
+  [
+   "q2",
+   "q4",
+   "mitos",
+   "arr"
+  ],
+  [
+   "q2",
+   "q5",
+   "muros"
+  ],
+  [
+   "q2",
+   "q6",
+   "tabu"
+  ],
+  [
+   "q2",
+   "q9",
+   "inedito"
+  ],
+  [
+   "q2",
+   "q10",
+   "conversa"
+  ],
+  [
+   "q2",
+   "q11",
+   "espont",
+   "tcl"
+  ],
+  [
+   "q2",
+   "q12",
+   "cenas"
+  ],
+  [
+   "q2",
+   "q13",
+   "territorio"
+  ],
+  [
+   "q3",
+   "q3",
+   "espont",
+   "arr"
+  ],
+  [
+   "q3",
+   "q4",
+   "abismo"
+  ],
+  [
+   "q3",
+   "q5",
+   "mitos",
+   "arr"
+  ],
+  [
+   "q3",
+   "q7",
+   "metaforas"
+  ],
+  [
+   "q3",
+   "q8",
+   "bancario"
+  ],
+  [
+   "q3",
+   "q9",
+   "cenas"
+  ],
+  [
+   "q3",
+   "q10",
+   "mitos"
+  ],
+  [
+   "q3",
+   "q12",
+   "sugest"
+  ]
+ ],
+ "NUCTYPE": {
+  "mitos": "Mito",
+  "muros": "Situação-limite",
+  "tabu": "Situação-limite",
+  "inedito": "Inédito viável",
+  "metaforas": "Signo mediador",
+  "cenas": "Codificação",
+  "territorio": "Codificação",
+  "abismo": "Situação-limite"
+ },
+ "versao": "1.0.0"
+}
