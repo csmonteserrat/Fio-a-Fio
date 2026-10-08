@@ -172,6 +172,8 @@ table.conv{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
 .star input:checked+span{background:var(--q3);color:#fff}
 .star input:disabled+span{opacity:.3;cursor:default}
 .star input:focus-visible+span{outline:2px solid var(--focus)}
+.gneed{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--warn-bg,#fff4e0);color:var(--warn-ink,#7a4b00);font-size:13px}
+.pctfill{font-weight:600}.pctfill.hi{color:var(--ok-ink,#1b7a43)}.pctfill.mid{color:var(--warn-ink,#7a4b00)}.pctfill.lo{color:var(--danger-ink,#b42318)}
 .gnote{font-size:12.5px;color:var(--secondary);background:var(--sunken);border-radius:8px;padding:8px 12px;margin-bottom:12px}
 .gnote b{color:var(--heading);font-weight:600;margin-left:4px}
 .groups h4{margin:0 0 7px;font-size:11px;font-weight:600;color:var(--secondary);letter-spacing:.05em;text-transform:uppercase}
@@ -532,7 +534,7 @@ const SCHEMA={
     {k:"tempo",n:2,type:"radio",label:"Tempo neste CS ou território",opts:OPT.tempoP}]},
   {t:"Parte 2 · Demandas clínicas",f:[
     {k:"q3",n:3,type:"multi",label:"Três problemas mais frequentes no atendimento",labels:["1","2","3"]},
-    {k:"temas",n:4,type:"groups",perGroup:2,urgent:3,label:"Quais destes temas os pacientes deste território mais precisam entender melhor? Marque até 2 de cada grupo e, depois, os 3 mais urgentes."},
+    {k:"temas",n:4,type:"groups",perGroup:2,urgent:3,urgReq:true,label:"Quais destes temas os pacientes deste território mais precisam entender melhor? Marque até 2 de cada grupo e, depois, os 3 mais urgentes."},
     {k:"q4",n:5,type:"ta",label:"Abismo técnico-popular: onde chegam com pouca informação ou informação errada, e por quê"},
     {k:"q5",n:6,type:"multi",label:"Crenças equivocadas que dificultam o cuidado, nas palavras dos pacientes",labels:["Crença 1","Crença 2","Crença 3"]}]},
   {t:"Parte 3 · Matriz de priorização",f:[{k:"mx",n:7,type:"matrix",label:"Para cada tema: frequência na demanda e potencial de impacto de um vídeo (1 = muito baixo, 5 = muito alto)"}]},
@@ -738,7 +740,7 @@ function fieldHTML(q,f){
   let b="";
   if(f.type==="radio"||f.type==="checks"){const t=f.type==="radio"?"radio":"checkbox";
     b=`<div class="pills" data-max="${f.max||""}">${f.opts.map(o=>`<label class="pill"><input type="${t}" name="${id}" value="${esc(o)}" id="${id}-${slug(o)}"><span>${esc(o)}</span></label>`).join("")}</div>${f.other?`<input class="inp" style="margin-top:8px" id="${q}-${f.other}" placeholder="${f.type==="radio"?"Se outra, qual?":"Outra razão (opcional)"}">`:""}`}
-  else if(f.type==="groups")b=`${f.urgent?`<div class="gnote">Até ${f.perGroup} por grupo. Depois toque na estrela dos ${f.urgent} mais urgentes de toda a lista. <b id="${id}-cnt"></b></div>`:""}<div class="groups" ${f.urgent?`data-urg="${f.urgent}"`:""}>${Q1T.map(g=>`<div><h4>${esc(g.cat)}</h4><div class="pills" ${f.perGroup?`data-pg="${f.perGroup}"`:""}>${g.items.map(t=>`<span class="pw"><label class="pill"><input class="it" type="checkbox" name="${id}" value="${t.id}" id="${id}-${t.id}"><span>${esc(t.label)}</span></label>${f.urgent?`<label class="star" title="Mais urgente"><input class="st" type="checkbox" name="${id}-u" value="${t.id}" id="${id}-${t.id}-u" aria-label="Mais urgente: ${esc(t.label)}"><span>★</span></label>`:""}</span>`).join("")}</div></div>`).join("")}</div>`;
+  else if(f.type==="groups")b=`${f.urgent?`<div class="gnote">Até ${f.perGroup} por grupo. Depois toque na estrela dos ${f.urgent} mais urgentes de toda a lista. <b id="${id}-cnt"></b>${f.urgReq?`<div class="gneed"><b>Obrigatório:</b> clique nas estrelas ★ ao lado dos temas marcados para indicar as ${f.urgent} mais urgentes, no total da lista. Não é preciso escolher temas em todos os grupos.</div>`:""}</div>`:""}<div class="groups" ${f.urgent?`data-urg="${f.urgent}"`:""}>${Q1T.map(g=>`<div><h4>${esc(g.cat)}</h4><div class="pills" ${f.perGroup?`data-pg="${f.perGroup}"`:""}>${g.items.map(t=>`<span class="pw"><label class="pill"><input class="it" type="checkbox" name="${id}" value="${t.id}" id="${id}-${t.id}"><span>${esc(t.label)}</span></label>${f.urgent?`<label class="star" title="Mais urgente"><input class="st" type="checkbox" name="${id}-u" value="${t.id}" id="${id}-${t.id}-u" aria-label="Mais urgente: ${esc(t.label)}"><span>★</span></label>`:""}</span>`).join("")}</div></div>`).join("")}</div>`;
   else if(f.type==="ta")b=`<textarea class="ta" id="${id}" rows="2"></textarea>`;
   else if(f.type==="tc")b=`<div class="tc"><input class="inp" id="${id}">${macroSel(id+"-c")}</div>`;
   else if(f.type==="tcl")b=`<div class="tcl">${f.labels.map((l,i)=>`<div class="lbl">${esc(l)}</div><div class="tc"><input class="inp" id="${id}-${i}">${macroSel(`${id}-${i}-c`)}</div>`).join("")}</div>`;
@@ -785,11 +787,14 @@ function enforceMax(){
     st.forEach(s=>{const it=s.closest(".pw").querySelector("input.it");if(!it.checked)s.checked=false});
     const c=st.filter(s=>s.checked).length;st.forEach(s=>{const it=s.closest(".pw").querySelector("input.it");s.disabled=!it.checked||(!s.checked&&c>=m)});
     const n=g.querySelectorAll("input.it:checked").length,cnt=g.parentElement.querySelector("[id$='-cnt']");if(cnt)cnt.textContent=`${n} marcado${n===1?"":"s"} · ${c} de ${m} urgentes`})}
+function fieldHas(f,r){const v=f.type==="matrix"?r.mx:r[f.k];if(Array.isArray(v))return v.some(x=>x&&(typeof x==="string"?x.trim():x.t));if(v&&typeof v==="object")return Object.values(v).some(Boolean);return!!(v&&String(v).trim())}
+function fillInfo(q,r){let filled=0,total=0,own=0;SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="meta")return;total++;if(fieldHas(f,r)){filled++;if(!(q==="q3"&&f.k==="area"))own++}}));return{filled,total,own,pct:total?Math.round(filled/total*100):0}}
+const URG_Q3=3;
+function urgOk(q,r){return q!=="q3"||(r.temasU||[]).length===URG_Q3}
 function updateSaveState(q){
   const st=$("#saveSt");if(!st)return;const r=readForm(q);
-  let filled=0,total=0;SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="meta")return;total++;const v=f.type==="matrix"?r.mx:r[f.k];
-    if(Array.isArray(v)?v.some(x=>x&&(typeof x==="string"?x:x.t)):typeof v==="object"&&v?Object.values(v).some(Boolean):!!v)filled++}));
-  st.innerHTML=`${S.editing[q]?`Editando <b>${esc(r.code)}</b> · `:""}<b>${filled}</b> de ${total} perguntas preenchidas`;
+  const fi=fillInfo(q,r);
+  st.innerHTML=`${S.editing[q]?`Editando <b>${esc(r.code)}</b> · `:""}<b>${fi.filled}</b> de ${fi.total} perguntas preenchidas · ${fi.pct}%`;
 }
 function renderQ(q){
   const sc=SCHEMA[q];
@@ -832,7 +837,7 @@ function summary(q,r){
 function renderList(q){
   const L=$("#list");if(!L)return;const arr=[...S[q]].sort((a,b)=>String(b.code).localeCompare(String(a.code),"pt",{numeric:true}));
   $("#listSub").textContent=arr.length?`${arr.length} questionário${arr.length>1?"s":""} salvos`:"Nenhum ainda";
-  L.innerHTML=arr.length?`<div class="reclist">${arr.map(r=>`<div class="rec ${S.editing[q]===r.id?"editing":""}"><span class="code">${esc(r.code||"?")}</span><span class="info">${r.resp?`<b>${esc(r.resp)}</b><br>`:""}${summary(q,r)}<br>${fmtDate(r.data)}${r.aplicador?` · aplicou ${esc(r.aplicador)}`:""}</span><span class="act"><button class="ib" data-ed="${r.id}" aria-label="Editar ${esc(r.code)}"><i data-lucide="pencil"></i></button><button class="ib" data-del="${r.id}" aria-label="Excluir ${esc(r.code)}"><i data-lucide="trash-2"></i></button></span></div>`).join("")}</div>`
+  L.innerHTML=arr.length?`<div class="reclist">${arr.map(r=>`<div class="rec ${S.editing[q]===r.id?"editing":""}"><span class="code">${esc(r.code||"?")}</span><span class="info">${r.resp?`<b>${esc(r.resp)}</b><br>`:""}${summary(q,r)}<br><span class="pctfill ${fillInfo(q,r).pct>=80?"hi":fillInfo(q,r).pct>=50?"mid":"lo"}" title="Perguntas respondidas neste questionário">${fillInfo(q,r).pct}% preenchido</span> · ${fmtDate(r.data)}${r.aplicador?` · aplicou ${esc(r.aplicador)}`:""}</span><span class="act"><button class="ib" data-ed="${r.id}" aria-label="Editar ${esc(r.code)}"><i data-lucide="pencil"></i></button><button class="ib" data-del="${r.id}" aria-label="Excluir ${esc(r.code)}"><i data-lucide="trash-2"></i></button></span></div>`).join("")}</div>`
    :`<div class="empty-mini">Os questionários salvos aparecem aqui, com o código para conferir com o papel.</div>`;
   if(q!=="q1"){const done=new Set(S[q].map(r=>r.resp));const anon=S[q].filter(r=>r.resp===ANON).length;const groups=q==="q2"?[["Agentes comunitários",ACS_NAMES]]:EQUIPE;const miss=groups.map(([c,ns])=>[c,ns.filter(n=>!done.has(n))]).filter(([,ns])=>ns.length);const total=q==="q2"?9:31;
     L.insertAdjacentHTML("beforeend",`<div class="miss"><div class="lab">Faltam responder · ${miss.reduce((a,[,ns])=>a+ns.length,0)} de ${total}${anon?` (${anon} anônimo${anon>1?"s":""} não entra${anon>1?"m":""} na conta)`:""}</div>${miss.length?miss.map(([c,ns])=>`${groups.length>1?`<div class="mcat">${esc(c)}</div>`:""}${ns.map(n=>q==="q3"?`<button class="mname ml" data-ml="${esc(n)}" title="Gerar link pessoal para ${esc(n)}">${esc(n)} <i data-lucide="link"></i></button>`:`<span class="mname">${esc(n)}</span>`).join("")}`).join(""):'<div class="sub">Todos responderam.</div>'}</div>`)}
@@ -850,6 +855,8 @@ async function save(q){
   const r=readForm(q);if(!r.code)r.code=nextCode(q);
   if(q!=="q1"&&!r.resp){toast("Selecione quem está respondendo, ou \"Prefere não se identificar\".");$(`#${q}-resp`)?.focus();if(S.apply){S.apply.step=0;renderApplyStep&&renderApplyStep()}return}
   if(q!=="q1"&&r.resp!==ANON){const d2=S[q].find(x=>(x.resp||"").trim().toLowerCase()===r.resp.trim().toLowerCase()&&x.id!==S.editing[q]);if(d2){toast(`${r.resp} já respondeu (${d2.code}).`);return}}
+  if(fillInfo(q,r).own===0){toast("O questionário está em branco. Responda pelo menos uma pergunta antes de salvar.");return}
+  if(!urgOk(q,r)){toast(`Na pergunta 4, clique nas estrelas ★ e marque os ${URG_Q3} temas mais urgentes (faltam ${URG_Q3-(r.temasU||[]).length}).`);if(S.apply&&S.apply.q===q){const k=applySteps(q).findIndex(x=>x.f.some(f=>f.k==="temas"));if(k>=0){S.apply.step=k;renderApplyStep&&renderApplyStep()}}return}
   const dup=S[q].find(x=>x.code===r.code&&x.id!==S.editing[q]);if(dup){toast(`O código ${r.code} já existe. Troque o código antes de salvar.`);$(`#${q}-code`).focus();return}
   const b=$("#sv");b.disabled=true;
   try{const now=new Date().toISOString();const id=S.editing[q];
@@ -864,7 +871,7 @@ async function save(q){
 
 /* ---------------- CSV ---------------- */
 function csvRows(q){
-  const cols=[["Código",r=>r.code],["Data",r=>fmtDate(r.data)],["Aplicador",r=>r.aplicador||""]];if(q==="q1")cols.push(["Coleta",r=>r.coleta]);
+  const cols=[["Código",r=>r.code],["Data",r=>fmtDate(r.data)],["Aplicador",r=>r.aplicador||""],["% preenchido",r=>fillInfo(q,r).pct]];if(q==="q1")cols.push(["Coleta",r=>r.coleta]);
   SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{const L=`${f.n} ${f.label}`;
     if(f.type==="groups"){Q1ALL.forEach(t=>cols.push([`${f.n} ${t.label}`,r=>(r.temas||[]).includes(t.id)?1:0]));if(f.urgent)cols.push([`${f.n} mais urgentes`,r=>(r.temasU||[]).map(id=>Q1ALL.find(t=>t.id===id)?.label).filter(Boolean).join(" | ")])}
     else if(f.type==="checks")f.opts.forEach(o=>cols.push([`${f.n} ${o}`,r=>(r[f.k]||[]).includes(o)?1:0]));
@@ -1460,7 +1467,7 @@ function renderApply(){
   const show=()=>{const n=st.length,i=S.apply.step;renderApplyStep=show;document.querySelectorAll("[data-step]").forEach(e=>e.hidden=+e.dataset.step!==i);
     $("#apLbl").textContent=`Etapa ${i+1} de ${n}`;$("#apBar").style.width=((i+1)/n*100)+"%";$("#apBack").disabled=i===0;$("#apFwd").hidden=i===n-1;$("#sv").hidden=i!==n-1;window.scrollTo({top:0})};
   $("#apBack").onclick=()=>{S.apply.step=Math.max(0,S.apply.step-1);show()};
-  $("#apFwd").onclick=()=>{S.apply.step=Math.min(st.length-1,S.apply.step+1);show()};
+  $("#apFwd").onclick=()=>{const cur=st[S.apply.step];if(q==="q3"&&cur&&cur.f.some(f=>f.k==="temas")){const u=readForm(q);if(!urgOk(q,u)){toast(`Clique nas estrelas ★ e marque as ${URG_Q3} mais urgentes para continuar (faltam ${URG_Q3-(u.temasU||[]).length}).`);return}}S.apply.step=Math.min(st.length-1,S.apply.step+1);show()};
   const ex=$("#apExit");if(ex)ex.onclick=()=>{if(ex.dataset.arm){exitApply();return}ex.dataset.arm="1";ex.textContent="Sair sem salvar?";ex.classList.add("danger");setTimeout(()=>{if(ex.isConnected){delete ex.dataset.arm;ex.innerHTML='<i data-lucide="x"></i>Sair';ex.classList.remove("danger");icons()}},4000)};
   show();
 }
@@ -1487,10 +1494,10 @@ function renderGate(){
   else if(g.step==="role")body=`<h2>Como você vai entrar?</h2>${g.msg?`<p class="gmsg">${esc(g.msg)}</p>`:""}<div class="roles">
     <button class="role" data-role="aval"><i data-lucide="clipboard-pen"></i><b>Avaliador</b><span>Aplicar os questionários com pacientes, ACS ou equipe</span></button>
     <button class="role" data-role="admin"><i data-lucide="shield-check"></i><b>Administrador</b><span>Acesso a tudo: digitação, panorama, análises e configurações</span></button></div>`;
-  else if(g.step==="pw")body=`<button class="btn ghost sm gback" id="gb"><i data-lucide="arrow-left"></i>Voltar</button><h2>${g.role==="admin"?"Administrador":"Avaliador"}</h2><p class="sub">${g.role==="admin"?"Entre com seu e-mail e senha.":"Digite a senha dos avaliadores."}</p>
+  else if(g.step==="pw")body=`<button class="btn ghost sm gback" id="gb"><i data-lucide="arrow-left"></i>Voltar</button><h2>${g.role==="admin"?"Administrador":"Avaliador"}</h2><p class="sub">${g.role==="admin"?"Entre com seu usuário e senha.":"Digite a senha dos avaliadores."}</p>
     <form id="gf" class="gform" autocomplete="on">${g.role==="admin"?`<label>Usuário<input class="inp" type="text" id="gem" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="ex.: caio"></label>`:""}<label>Senha<input class="inp" type="password" id="gpw" autocomplete="current-password"></label>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Continuar</button></form>`;
   else if(g.step==="name")body=`<h2>Quem está aplicando?</h2><p class="sub">Seu nome fica registrado em cada questionário que você aplicar.</p>
-    <form id="gf" class="gform" autocomplete="off"><label>Seu nome<input class="inp" id="gname" list="staffList" value="${esc(g.lastName||"")}" autocomplete="name" placeholder="Comece a digitar e escolha"></label><datalist id="staffList">${ALL_STAFF.map(n=>`<option value="${esc(n)}"></option>`).join("")}</datalist>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Entrar</button></form>`;
+    <form id="gf" class="gform" autocomplete="off"><label>Seu nome<input class="inp" id="gname" value="${esc(g.lastName||"")}" autocomplete="off" placeholder="Digite seu nome e sobrenome"></label>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Entrar</button></form>`;
   $("#main").innerHTML=`<div class="gate"><div class="gcard"><div class="gmark">${MARK}<div><b>Fio a Fio</b><small>CS Monte Serrat · Levantamento de temas</small></div></div>${body}<div class="gver">Versão ${FIO_VERSAO}</div></div></div>`;
   icons();
   document.querySelectorAll("[data-role]").forEach(b=>b.onclick=()=>{S.gate={step:"pw",role:b.dataset.role};render()});
