@@ -11,7 +11,9 @@ Primeira versão completa, construída e testada como artefato no Claude e migra
 - Q3 por link online: link pessoal (uso único) ou geral.
 - Avaliador digita o próprio nome (sem lista de escolha).
 - Questionário em branco não é salvo; cada questionário da lista mostra a porcentagem preenchida (e a coluna `% preenchido` no CSV).
-- Q3, pergunta 4: obrigatório marcar as 3 urgências (estrelas) no total da lista; não é preciso escolher temas em todos os grupos.
+- Textos revisados no Q2 (perguntas 10, 13 e 14) e no Q3 (perguntas 3 e 6 a 14).
+- Q3: a pergunta sobre o abismo técnico-popular passou a ser a 4, logo depois dos três problemas, e a lista de temas virou a 5. A pergunta 4 mostra como botões os problemas digitados na 3 e abre um campo de texto para cada um (o texto é guardado em `q4`, com o detalhe por problema em `q4d`). A matriz passou a se chamar frequência na demanda × potencial educativo.
+- Q3, pergunta 5 (lista de temas): obrigatório marcar as 3 urgências (estrelas) no total da lista; não é preciso escolher temas em todos os grupos.
 - Entrada como avaliador (só aplica questionários) ou administrador (acesso a tudo). O administrador entra só com o nome de usuário; o `@fioafio.app` é completado pelo site.
 
 **Análise**
@@ -20,6 +22,9 @@ Primeira versão completa, construída e testada como artefato no Claude e migra
 - Análise de conteúdo temática: codificação com sugestões do Claude, livro de códigos, triangulação, saturação, kappa de Cohen entre codificadores, consenso e fichas de temas geradores.
 - Tutorial de leitura e interpretação de cada resultado.
 - Script de publicação que reproduz todas as tabelas a partir de uma exportação anonimizada.
+
+**Segurança dos dados**
+- Botão Baixar backup na página Acesso (administrador): baixa um JSON com todas as coleções, restaurável com `scripts/importar_artefato.py`; mostra a data do último backup baixado no navegador.
 
 **Infraestrutura**
 - Supabase (dados, login e regras de acesso), API FastAPI no Render, site estático no Render.

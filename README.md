@@ -88,6 +88,15 @@ Suba esta pasta para um repositório. Pode ser público: não há dados nem segr
 
 No plano gratuito, a API "dorme" sem uso e a primeira análise do dia pode levar até 1 minuto.
 
+### Backup dos dados
+
+O plano gratuito do Supabase não faz backup automático e pausa projetos sem uso por cerca de 7 dias. Durante a coleta:
+
+- Na página **Acesso** do site (administrador), clique em **Baixar backup** ao fim de cada dia de coleta. O arquivo `FioAFio_backup_AAAA-MM-DD_HHMM.json` traz todas as coleções.
+- Guarde o arquivo fora do repositório público. Ele tem as respostas abertas e os nomes de quem respondeu o Q2 e o Q3.
+- Para restaurar: `python scripts/importar_artefato.py FioAFio_backup_....json` com o `.env` preenchido.
+- Entre no site ao menos uma vez por semana para o projeto não ser pausado.
+
 ### 4. Trazer os dados do painel de testes (opcional)
 
 Exporte os dados do artefato para JSON e rode `python scripts/importar_artefato.py arquivo.json` com o `.env` preenchido.

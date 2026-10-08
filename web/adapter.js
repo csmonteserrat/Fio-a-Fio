@@ -119,7 +119,25 @@
     }
   };
 
-  window.FIO = { sb: sb, api: api, cfg: C, carregarPerfil: carregarPerfil, perfil: function () { return perfil; },
+  // Backup completo: todas as coleções, no formato que scripts/importar_artefato.py restaura.
+  async function backup() {
+    var out = { _meta: { projeto: "Fio a Fio", versao: (window.FIO_VERSAO || ""), geradoEm: new Date().toISOString() } };
+    var nomes = Object.keys(TAB);
+    for (var i = 0; i < nomes.length; i++) {
+      var lista = [], de = 0;
+      for (;;) {
+        var r = await sb.from(TAB[nomes[i]]).select("id,data").order("id").range(de, de + 999);
+        if (r.error) throw erro(r.error);
+        r.data.forEach(function (x) { lista.push(Object.assign({ id: x.id }, x.data)); });
+        if (r.data.length < 1000) break;
+        de += 1000;
+      }
+      out[nomes[i]] = lista;
+    }
+    return out;
+  }
+
+  window.FIO = { backup: backup, sb: sb, api: api, cfg: C, carregarPerfil: carregarPerfil, perfil: function () { return perfil; },
     recarregarTudo: function () { Object.keys(ouvintes).forEach(recarregar); } };
   window.claude = { use: async function (n) { return { db: db, user: user, sample: sample, downloads: downloads }[n] || null; } };
 })();
