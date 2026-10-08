@@ -1,4 +1,4 @@
-/* Projeto Fio a Fio · versão 1.3
+/* Projeto Fio a Fio · versão 1.4
  * Adaptador entre o painel e o Supabase.
  *
  * O painel nasceu como artefato do Claude e usa a interface claude.use("db"),

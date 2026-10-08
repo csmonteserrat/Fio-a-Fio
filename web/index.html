@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Painel Fio a Fio</title>
-<meta name="fio-version" content="1.3">
+<meta name="fio-version" content="1.4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <script src="https://unpkg.com/lucide@0.470.0/dist/umd/lucide.min.js"></script>
@@ -457,7 +457,7 @@ body.gate .side{display:none}
 
 <script>
 /* ---------------- dados do instrumento ---------------- */
-const FIO_VERSAO="1.3";window.FIO_VERSAO=FIO_VERSAO;
+const FIO_VERSAO="1.4";window.FIO_VERSAO=FIO_VERSAO;
 const MACROS=[
  ["vac","Vacinação"],["dm","Diabetes"],["has","Hipertensão arterial"],["sm","Saúde mental"],["ad","Álcool e outras drogas"],
  ["ist","IST / HIV / PrEP"],["pf","Planejamento familiar"],["pn","Pré-natal e saúde materna"],["am","Amamentação"],
@@ -524,14 +524,14 @@ const SCHEMA={
   {t:"Parte 2 · Temas de saúde",f:[
     {k:"temas",n:4,type:"groups",label:"Quais destes temas de saúde você gostaria de entender melhor? (marque quantos quiser)"},
     {k:"q5",n:5,type:"ta",nao:"Não",short:"Tema que gera dúvida e não está na lista",label:"Existe algum tema de saúde que te gera dúvida e que NÃO está na lista acima?"},
-    {k:"q6",n:6,type:"ta",short:"Fofoca do Portão: o que se ouve por aí e não se sabe se é verdade",label:"Tem alguma coisa que você ou alguém da sua família sempre ouve por aí sobre saúde, mas não sabe se é verdade?",hint:"Exemplos: “vacina causa autismo”, “pressão alta não tem sintoma”, “diabetes tipo 2 tem cura”…"},
-    {k:"q7",n:7,type:"ta",short:"O Muro: maior dificuldade ou barreira para cuidar da saúde ou vir ao CS",label:"Pensando na sua vida ou na vida de pessoas próximas, qual é a maior dificuldade, medo ou barreira que impede as pessoas de cuidarem da saúde ou de virem ao Centro de Saúde?",hint:"Exemplos: “Dá vergonha de perguntar”, “Acham que o médico só vai dar bronca”."}]},
+    {k:"q6",n:6,type:"ta",nao:"Não",short:"Fofoca do Portão: o que se ouve por aí e não se sabe se é verdade",label:"Tem alguma coisa que você ou alguém da sua família sempre ouve por aí sobre saúde, mas não sabe se é verdade?",hint:"Exemplos: “vacina causa autismo”, “pressão alta não tem sintoma”, “diabetes tipo 2 tem cura”…"},
+    {k:"q7",n:7,type:"ta",nao:"Nenhuma",short:"O Muro: maior dificuldade ou barreira para cuidar da saúde ou vir ao CS",label:"Pensando na sua vida ou na vida de pessoas próximas, qual é a maior dificuldade, medo ou barreira que impede as pessoas de cuidarem da saúde ou de virem ao Centro de Saúde?",hint:"Exemplos: “Dá vergonha de perguntar”, “Acham que o médico só vai dar bronca”."}]},
   {t:"Parte 3 · TV da sala de espera",f:[
     {k:"q8",n:8,type:"radio",label:"Você costuma prestar atenção no que passa na TV enquanto espera para ser atendido?",short:"Presta atenção na TV enquanto espera?",opts:OPT.tv},
     {k:"q9",n:9,type:"checks",label:"Que tipo de vídeo você acharia mais útil ver na sala de espera? (Marque até 2)",short:"Tipo de vídeo mais útil (até 2)",opts:OPT.q9,max:2},
     {k:"q10",n:10,type:"tc",nao:"Nenhum",short:"Pedido de vídeo",label:"Se você pudesse pedir um vídeo curto sobre saúde para passar aqui no posto, qual seria o tema?",hint:"Transcreva o pedido e classifique no macro-tema (campo dourado)."},
     {k:"q11",n:11,type:"ta",short:"A Tocha: para quem repassaria a informação",label:"Se você aprendesse uma coisa muito importante sobre saúde num vídeo aqui no posto, para quem você repassaria essa informação depois? (Vizinha, filhos, marido, amigas?)"},
-    {k:"q12",n:12,type:"ta",short:"Sugestões para o CS",label:"Você tem alguma sugestão para o Centro de Saúde Monte Serrat melhorar as informações de saúde que chegam até você?",hint:"Dê exemplos: dicas pelo WhatsApp, Instagram etc."}]}]},
+    {k:"q12",n:12,type:"ta",nao:"Não",short:"Sugestões para o CS",label:"Você tem alguma sugestão para o Centro de Saúde Monte Serrat melhorar as informações de saúde que chegam até você?",hint:"Dê exemplos: dicas pelo WhatsApp, Instagram etc."}]}]},
  q2:{prefix:"A",title:"Agentes Comunitários de Saúde",short:"Q2",color:"var(--q2)",parts:[
   {t:"Registro",f:[{k:"_meta",type:"meta"}]},
   {t:"Parte 1 · Identificação",f:[

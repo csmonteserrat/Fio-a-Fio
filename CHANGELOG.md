@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.4.0 · 2026-10-08
+
+**Coleta**
+- Q1: botão **Não** nas perguntas 6 e 12 e botão **Nenhuma** na pergunta 7, com o mesmo comportamento dos botões da 1.3 (limpa e trava o campo, conta como respondida, aparece no CSV).
+
 ## 1.3.0 · 2026-10-08
 
 **Coleta**

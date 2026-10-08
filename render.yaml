@@ -1,4 +1,4 @@
-# Projeto Fio a Fio, versão 1.3 · Blueprint do Render
+# Projeto Fio a Fio, versão 1.4 · Blueprint do Render
 # No Render: New > Blueprint, escolha este repositório e preencha as variáveis.
 services:
   - type: web
