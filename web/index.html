@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Painel Fio a Fio</title>
-<meta name="fio-version" content="1.4">
+<meta name="fio-version" content="1.6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <script src="https://unpkg.com/lucide@0.470.0/dist/umd/lucide.min.js"></script>
@@ -457,7 +457,7 @@ body.gate .side{display:none}
 
 <script>
 /* ---------------- dados do instrumento ---------------- */
-const FIO_VERSAO="1.4";window.FIO_VERSAO=FIO_VERSAO;
+const FIO_VERSAO="1.6";window.FIO_VERSAO=FIO_VERSAO;
 const MACROS=[
  ["vac","Vacinação"],["dm","Diabetes"],["has","Hipertensão arterial"],["sm","Saúde mental"],["ad","Álcool e outras drogas"],
  ["ist","IST / HIV / PrEP"],["pf","Planejamento familiar"],["pn","Pré-natal e saúde materna"],["am","Amamentação"],
@@ -468,17 +468,17 @@ const M=Object.fromEntries(MACROS.map(m=>[m.id,m]));
 const SHORT={vac:"Vacinação",dm:"Diabetes",has:"Hipertensão",sm:"S. mental",ad:"Álcool/drogas",ist:"IST/HIV",pf:"Planej. familiar",pn:"Pré-natal",am:"Amamentação",ido:"Idoso/quedas",can:"Câncer",ali:"Alimentação",tab:"Tabagismo",den:"Dengue",tb:"Tuberculose",med:"Medicamentos",bucal:"S. bucal",viol:"Violência"};
 const MX=MACROS.filter(m=>m.id!=="outro");
 const Q1T=[
- ["Criança e família",[["vac","Vacinação","vac"],["amam","Amamentação e alimentação infantil","am"],["febre","Febre","outro"],["desenv","Desenvolvimento infantil","outro"]]],
- ["Saúde da mulher",[["pf","Planejamento familiar e contracepção","pf"],["pren","Pré-natal","pn"],["prev","Preventivo e mamografia","can"],["menop","Menopausa","outro"],["viol","Violência doméstica","viol"]]],
- ["Saúde do homem",[["sexm","Saúde sexual masculina","ist"],["prost","Câncer de próstata","can"],["smh","Saúde mental do homem","sm"]]],
- ["Doenças crônicas",[["dm","Diabetes","dm"],["has","Pressão alta","has"],["obes","Obesidade e peso","ali"],["col","Colesterol e coração","has"]]],
- ["Saúde mental",[["ans","Ansiedade e estresse","sm"],["dep","Depressão","sm"],["alc","Álcool e outras drogas","ad"],["smad","Saúde mental na adolescência","sm"]]],
- ["ISTs e saúde sexual",[["ists","ISTs (sífilis, gonorreia, herpes)","ist"],["hiv","HIV/AIDS","ist"],["prep","PrEP e PEP","ist"]]],
- ["Alimentação e estilo de vida",[["alim","Alimentação saudável","ali"],["ativ","Atividade física","ali"],["tabag","Tabagismo","tab"]]],
- ["Saúde do idoso",[["qued","Quedas","ido"],["medic","Uso de medicamentos","med"],["dem","Demência e Alzheimer","ido"]]],
- ["Doenças do território",[["deng","Dengue","den"],["tb","Tuberculose","tb"],["lept","Leptospirose","outro"]]],
+ ["Saúde da criança e da família",[["vac","Vacinação: qual vacina, quando tomar, por que é importante","vac"],["amam","Amamentação e alimentação nos primeiros anos","am"],["febre","Febre: quando é perigosa e quando dá pra tratar em casa","outro"],["desenv","Desenvolvimento infantil: quando devo me preocupar?","outro"]]],
+ ["Saúde da mulher",[["pf","Planejamento familiar e métodos contraceptivos","pf"],["pren","Pré-natal: consultas, exames e cuidados","pn"],["prev","Exames preventivos (Papanicolau, mamografia)","can"],["menop","Menopausa: sintomas e cuidados","outro"],["viol","Violência doméstica: onde buscar ajuda","viol"]]],
+ ["Saúde do homem",[["sexm","Saúde sexual masculina","ist"],["prost","Câncer de próstata: quando fazer exames","can"],["smh","Saúde emocional e saúde mental do homem","sm"]]],
+ ["Doenças crônicas",[["dm","Diabetes: como controlar o açúcar no sangue","dm"],["has","Pressão alta: o que é e como tratar","has"],["obes","Obesidade e controle de peso","ali"],["col","Colesterol e doenças do coração","has"]]],
+ ["Saúde mental e emocional",[["ans","Ansiedade e estresse: quando é normal e quando buscar ajuda","sm"],["dep","Depressão: sinais, tratamento e preconceito","sm"],["alc","Álcool e outras drogas: onde buscar ajuda","ad"],["smad","Saúde mental na adolescência","sm"]]],
+ ["ISTs e saúde sexual",[["ists","Infecções sexualmente transmissíveis (sífilis, gonorreia, herpes…)","ist"],["hiv","HIV/AIDS: prevenção e tratamento","ist"],["prep","PrEP e PEP: o que são e onde conseguir no SUS","ist"]]],
+ ["Alimentação e estilo de vida",[["alim","Alimentação saudável com o que se tem em casa","ali"],["ativ","Atividade física: como começar e qual é suficiente","ali"],["tabag","Tabagismo: como parar de fumar","tab"]]],
+ ["Saúde do idoso",[["qued","Quedas: como prevenir em casa","ido"],["medic","Medicamentos: uso correto e riscos de tomar errado","med"],["dem","Demência e Alzheimer: primeiros sinais","ido"]]],
+ ["Doenças do território",[["deng","Dengue: como reconhecer e prevenir","den"],["tb","Tuberculose: sintomas e tratamento gratuito","tb"],["lept","Leptospirose: risco em época de chuva","outro"]]],
  ["Saúde bucal",[["carie","Cárie: por que aparece e como evitar","bucal"],["gengiva","Gengiva que sangra: o que significa","bucal"],["bucinf","Dentes de bebês e crianças: cuidados desde o primeiro dente","bucal"],["protese","Dentadura e prótese: cuidados e como conseguir pelo SUS","bucal"],["cboca","Câncer de boca: sinais de alerta","bucal"],["gravid","Dentista na gravidez pode?","bucal"],["fluor","Flúor: mito ou verdade","bucal"]]],
- ["Outros temas",[["sus","Como usar o SUS","outro"],["plant","Plantas medicinais","outro"]]]
+ ["Outros temas",[["sus","Como usar o SUS: consultas, encaminhamentos, direitos","outro"],["plant","Plantas medicinais: o que funciona e o que pode fazer mal","outro"]]]
 ].map(([cat,its])=>({cat,items:its.map(([id,label,macro])=>({id,label,macro}))}));
 const Q1ALL=Q1T.flatMap(g=>g.items);
 const OPT={
@@ -538,16 +538,16 @@ const SCHEMA={
     {k:"tempo",n:1,type:"radio",label:"Tempo como ACS neste território",opts:OPT.tempoP},
     {k:"familias",n:2,type:"radio",label:"Famílias acompanhadas",opts:OPT.familias}]},
   {t:"Parte 2 · Dúvidas, mitos e o Muro",f:[
-    {k:"q3",n:3,type:"tcl",label:"Três temas mais perguntados nas visitas (resposta espontânea, antes de mostrar a lista)",labels:["1º mais frequente","2º","3º"]},
+    {k:"q3",n:3,type:"tcl",short:"Três temas mais perguntados nas visitas (resposta espontânea, antes de mostrar a lista)",label:"Quais são os TRÊS temas de saúde sobre os quais você recebe mais perguntas ou dúvidas durante as visitas domiciliares? (Liste em ordem de frequência)",labels:["1º mais frequente","2º","3º"]},
     {k:"temas",n:4,type:"groups",perGroup:2,urgent:3,label:"Sobre quais destes temas as famílias mais têm dúvida ou precisam entender melhor? Marque até 2 de cada grupo e, depois, os 3 mais urgentes."},
-    {k:"q4",n:5,type:"multi",label:"Principais mitos e desinformações, nas palavras da comunidade",labels:["Mito 1","Mito 2","Mito 3","Mito 4"]},
-    {k:"q5",n:6,type:"ta",label:"O Muro: barreira emocional, cultural ou de medo"},
-    {k:"q6",n:7,type:"ta",label:"Temas tabu, ditos em segredo ou de forma indireta"}]},
+    {k:"q4",n:5,type:"multi",short:"Principais mitos e desinformações, nas palavras da comunidade",label:"Quais são as PRINCIPAIS desinformações (fake news, mitos, crenças incorretas) que você mais ouve na comunidade sobre saúde?",hint:"Escreva a frase como as pessoas dizem, com as palavras que elas usam, não a versão técnica.",labels:["Mito 1","Mito 2","Mito 3","Mito 4"]},
+    {k:"q5",n:6,type:"ta",short:"O Muro: barreira emocional, cultural ou de medo",label:"Qual é a principal barreira emocional, cultural ou de medo que impede as famílias de seguirem uma orientação médica/de enfermagem ou de buscarem o posto?",hint:"Exemplo: “Não levam o filho pra vacinar porque acham que a febre é pior”, “Não fazem o pré-natal porque têm medo do exame”."},
+    {k:"q6",n:7,type:"ta",short:"Temas tabu, ditos em segredo ou de forma indireta",label:"Existem temas de saúde que as pessoas NÃO falam abertamente, mas que você percebe que precisam de atenção? (Temas tabu, situações ditas “em segredo” ou de forma indireta)"}]},
   {t:"Parte 3 · Universo vocabular",f:[{k:"q7",n:8,type:"vocab",label:"Como a comunidade chama cada coisa"}]},
   {t:"Parte 4 · Barreiras e inédito viável",f:[
     {k:"q8",n:9,type:"checks",label:"Por que não buscam o CS",opts:OPT.barreiras,other:"q8outra"},
     {k:"q9",n:10,type:"ta",short:"Inédito viável: o próximo passo possível que as famílias ainda hesitam em dar",label:"Qual ação simples e possível (o próximo passo que a pessoa consegue dar) você gostaria que as famílias fizessem, mas elas ainda hesitam?"},
-    {k:"q10",n:11,type:"ta",label:"Situações em que a comunidade mais fala de saúde"}]},
+    {k:"q10",n:11,type:"ta",short:"Situações em que a comunidade mais fala de saúde",label:"Em quais SITUAÇÕES de vida a comunidade costuma MAIS falar sobre saúde espontaneamente? (Ex.: quando alguém adoece, após uma notícia, em reuniões de família…)"}]},
   {t:"Parte 5 · Prioridades",f:[
     {k:"q11",n:12,type:"tcl",label:"Dois temas mais urgentes, com suas palavras",labels:["Urgente 1","Urgente 2"]},
     {k:"q12",n:13,type:"ta",short:"Melhor forma de apresentar (personagens, linguagem, situações)",label:"Qual seria a melhor forma de apresentar esses temas para que as pessoas do território se identifiquem?",hint:"Personagens, linguagem e situações que soariam verdadeiras para esta comunidade."},

@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## 1.6.0 · 2026-10-08
+
+**Coleta**
+- Q2: textos novos nas perguntas 3, 5, 6, 7 e 11. O pedido de escrever as frases "como as pessoas dizem" (P5) e o exemplo da P6 aparecem em letra menor abaixo da pergunta. Os nomes curtos antigos seguem no CSV e na análise.
+
+## 1.5.0 · 2026-10-08
+
+**Coleta**
+- Quadro de temas (Q1, Q2 e Q3): os textos das opções e os nomes dos grupos passam a ser os do PDF do Q1 (ex.: "Vacinação: qual vacina, quando tomar, por que é importante"). O grupo Saúde bucal não mudou. Os códigos internos dos temas são os mesmos, então os dados já coletados e a análise continuam valendo; só os nomes nas colunas do CSV e nas tabelas mudam.
+
 ## 1.4.0 · 2026-10-08
 
 **Coleta**

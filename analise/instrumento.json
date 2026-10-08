@@ -79,26 +79,26 @@
  ],
  "Q1T": [
   {
-   "cat": "Criança e família",
+   "cat": "Saúde da criança e da família",
    "items": [
     {
      "id": "vac",
-     "label": "Vacinação",
+     "label": "Vacinação: qual vacina, quando tomar, por que é importante",
      "macro": "vac"
     },
     {
      "id": "amam",
-     "label": "Amamentação e alimentação infantil",
+     "label": "Amamentação e alimentação nos primeiros anos",
      "macro": "am"
     },
     {
      "id": "febre",
-     "label": "Febre",
+     "label": "Febre: quando é perigosa e quando dá pra tratar em casa",
      "macro": "outro"
     },
     {
      "id": "desenv",
-     "label": "Desenvolvimento infantil",
+     "label": "Desenvolvimento infantil: quando devo me preocupar?",
      "macro": "outro"
     }
    ]
@@ -108,27 +108,27 @@
    "items": [
     {
      "id": "pf",
-     "label": "Planejamento familiar e contracepção",
+     "label": "Planejamento familiar e métodos contraceptivos",
      "macro": "pf"
     },
     {
      "id": "pren",
-     "label": "Pré-natal",
+     "label": "Pré-natal: consultas, exames e cuidados",
      "macro": "pn"
     },
     {
      "id": "prev",
-     "label": "Preventivo e mamografia",
+     "label": "Exames preventivos (Papanicolau, mamografia)",
      "macro": "can"
     },
     {
      "id": "menop",
-     "label": "Menopausa",
+     "label": "Menopausa: sintomas e cuidados",
      "macro": "outro"
     },
     {
      "id": "viol",
-     "label": "Violência doméstica",
+     "label": "Violência doméstica: onde buscar ajuda",
      "macro": "viol"
     }
    ]
@@ -143,12 +143,12 @@
     },
     {
      "id": "prost",
-     "label": "Câncer de próstata",
+     "label": "Câncer de próstata: quando fazer exames",
      "macro": "can"
     },
     {
      "id": "smh",
-     "label": "Saúde mental do homem",
+     "label": "Saúde emocional e saúde mental do homem",
      "macro": "sm"
     }
    ]
@@ -158,42 +158,42 @@
    "items": [
     {
      "id": "dm",
-     "label": "Diabetes",
+     "label": "Diabetes: como controlar o açúcar no sangue",
      "macro": "dm"
     },
     {
      "id": "has",
-     "label": "Pressão alta",
+     "label": "Pressão alta: o que é e como tratar",
      "macro": "has"
     },
     {
      "id": "obes",
-     "label": "Obesidade e peso",
+     "label": "Obesidade e controle de peso",
      "macro": "ali"
     },
     {
      "id": "col",
-     "label": "Colesterol e coração",
+     "label": "Colesterol e doenças do coração",
      "macro": "has"
     }
    ]
   },
   {
-   "cat": "Saúde mental",
+   "cat": "Saúde mental e emocional",
    "items": [
     {
      "id": "ans",
-     "label": "Ansiedade e estresse",
+     "label": "Ansiedade e estresse: quando é normal e quando buscar ajuda",
      "macro": "sm"
     },
     {
      "id": "dep",
-     "label": "Depressão",
+     "label": "Depressão: sinais, tratamento e preconceito",
      "macro": "sm"
     },
     {
      "id": "alc",
-     "label": "Álcool e outras drogas",
+     "label": "Álcool e outras drogas: onde buscar ajuda",
      "macro": "ad"
     },
     {
@@ -208,17 +208,17 @@
    "items": [
     {
      "id": "ists",
-     "label": "ISTs (sífilis, gonorreia, herpes)",
+     "label": "Infecções sexualmente transmissíveis (sífilis, gonorreia, herpes…)",
      "macro": "ist"
     },
     {
      "id": "hiv",
-     "label": "HIV/AIDS",
+     "label": "HIV/AIDS: prevenção e tratamento",
      "macro": "ist"
     },
     {
      "id": "prep",
-     "label": "PrEP e PEP",
+     "label": "PrEP e PEP: o que são e onde conseguir no SUS",
      "macro": "ist"
     }
    ]
@@ -228,17 +228,17 @@
    "items": [
     {
      "id": "alim",
-     "label": "Alimentação saudável",
+     "label": "Alimentação saudável com o que se tem em casa",
      "macro": "ali"
     },
     {
      "id": "ativ",
-     "label": "Atividade física",
+     "label": "Atividade física: como começar e qual é suficiente",
      "macro": "ali"
     },
     {
      "id": "tabag",
-     "label": "Tabagismo",
+     "label": "Tabagismo: como parar de fumar",
      "macro": "tab"
     }
    ]
@@ -248,17 +248,17 @@
    "items": [
     {
      "id": "qued",
-     "label": "Quedas",
+     "label": "Quedas: como prevenir em casa",
      "macro": "ido"
     },
     {
      "id": "medic",
-     "label": "Uso de medicamentos",
+     "label": "Medicamentos: uso correto e riscos de tomar errado",
      "macro": "med"
     },
     {
      "id": "dem",
-     "label": "Demência e Alzheimer",
+     "label": "Demência e Alzheimer: primeiros sinais",
      "macro": "ido"
     }
    ]
@@ -268,17 +268,17 @@
    "items": [
     {
      "id": "deng",
-     "label": "Dengue",
+     "label": "Dengue: como reconhecer e prevenir",
      "macro": "den"
     },
     {
      "id": "tb",
-     "label": "Tuberculose",
+     "label": "Tuberculose: sintomas e tratamento gratuito",
      "macro": "tb"
     },
     {
      "id": "lept",
-     "label": "Leptospirose",
+     "label": "Leptospirose: risco em época de chuva",
      "macro": "outro"
     }
    ]
@@ -328,12 +328,12 @@
    "items": [
     {
      "id": "sus",
-     "label": "Como usar o SUS",
+     "label": "Como usar o SUS: consultas, encaminhamentos, direitos",
      "macro": "outro"
     },
     {
      "id": "plant",
-     "label": "Plantas medicinais",
+     "label": "Plantas medicinais: o que funciona e o que pode fazer mal",
      "macro": "outro"
     }
    ]
@@ -646,5 +646,5 @@
   "territorio": "Codificação",
   "abismo": "Situação-limite"
  },
- "versao": "1.4.0"
+ "versao": "1.6.0"
 }
