@@ -218,7 +218,8 @@ def matriz_equipe(q3: list[dict]) -> list[dict]:
     for m in I.MX:
         f = descritiva(((r.get("mx") or {}).get(m["id"]) or {}).get("f") for r in q3)
         i = descritiva(((r.get("mx") or {}).get(m["id"]) or {}).get("i") for r in q3)
-        out.append({"id": m["id"], "rotulo": m["label"], "f": f, "i": i,
+        na = sum(bool(((r.get("mx") or {}).get(m["id"]) or {}).get("na")) for r in q3)
+        out.append({"id": m["id"], "rotulo": m["label"], "f": f, "i": i, "na": na,
                     "produto": (f["media"] * i["media"]) if f and i else None})
     return sorted(out, key=lambda x: -(x["produto"] or 0))
 
@@ -288,7 +289,9 @@ def texto_metodos(res: dict) -> str:
         + (", e comparado entre faixas etárias pelo teste de Kruskal-Wallis" if kw else "") + ".",
         "Na matriz de priorização respondida pela equipe, a frequência na demanda e o potencial de impacto educativo "
         "de cada macro-tema foram avaliados em escala de 1 a 5 e descritos por média, intervalo de confiança de 95% "
-        "(distribuição t) e mediana. Dada a natureza exploratória do estudo e o tamanho dos grupos, os testes de "
+        "(distribuição t) e mediana. Quando o profissional indicou que o tema não faz parte da sua prática, não quis "
+        "avaliá-lo ou não soube responder, o tema foi excluído do cálculo daquele profissional, sem ser tratado como nota "
+        "baixa, e o número de exclusões foi registrado. Dada a natureza exploratória do estudo e o tamanho dos grupos, os testes de "
         "hipótese foram usados para orientar a interpretação, e não para inferência populacional. As análises foram "
         f"feitas em Python (SciPy, statsmodels e pandas), com o código do projeto Fio a Fio versão {I.VERSAO}.",
     ]

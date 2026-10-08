@@ -74,7 +74,8 @@ def main():
         for dim, d in (("frequencia", m["f"]), ("impacto", m["i"])):
             if d:
                 mat.append({"macro_tema": m["rotulo"], "dimensao": dim, "n": d["n"], "media": d["media"], "dp": d["dp"],
-                            "ic95_inf": d["lo"], "ic95_sup": d["hi"], "mediana": d["mediana"], "q1": d["q1"], "q3": d["q3"]})
+                            "ic95_inf": d["lo"], "ic95_sup": d["hi"], "mediana": d["mediana"], "q1": d["q1"], "q3": d["q3"],
+                            "fora_da_pratica": m["na"]})
     pd.DataFrame(mat).to_csv(out / "tabela_matriz.csv", index=False, encoding="utf-8-sig")
 
     props = [{"pergunta": k, "categoria": it["rotulo"], "n": P["n"], "marcaram": it["k"], "proporcao": it.get("p"),

@@ -1,6 +1,6 @@
 # Fio a Fio · Levantamento participativo de temas
 
-**Versão 1.0** (`VERSION` = 1.0.0) · Centro de Saúde Monte Serrat, Florianópolis (SC)
+**Versão 1.3** (`VERSION` = 1.3.0) · Centro de Saúde Monte Serrat, Florianópolis (SC)
 
 Painel para aplicar, digitar e analisar os questionários do Projeto Fio a Fio, que escolhe com a comunidade, os agentes comunitários e a equipe os temas dos vídeos de educação em saúde da sala de espera.
 
@@ -12,7 +12,10 @@ Painel para aplicar, digitar e analisar os questionários do Projeto Fio a Fio, 
 
 | Versão | Data | Onde roda | O que mudou |
 |---|---|---|---|
-| **1.0** | 2026-10-08 | Site no Render: https://fioafio-site.onrender.com/ (e artefato de testes no Claude) | Primeira versão completa. Veja o [CHANGELOG](CHANGELOG.md). |
+| **1.3** | 2026-10-08 | Site no Render: https://fioafio-site.onrender.com/ | Textos novos do Q1, botões Não (P5) e Nenhum (P10). Veja o [CHANGELOG](CHANGELOG.md). |
+| 1.2 | 2026-10-08 | Site no Render | Matriz do Q3 com × e cores, restaurar backup pelo site. Veja o [CHANGELOG](CHANGELOG.md). |
+| 1.1 | 2026-10-08 | Site no Render | Login por usuário, avaliador digita o nome, bloqueio de questionário em branco, % preenchido, 3 urgências no Q3, textos novos, backup. |
+| 1.0 | 2026-10-08 | Artefato de testes no Claude e site no Render | Primeira versão completa. |
 
 A versão aparece no menu lateral do site, na tela de entrada e em `GET /api/saude`. Ao publicar uma versão nova, atualize nesta ordem: `VERSION`, `FIO_VERSAO` no `web/index.html`, `versao` em `analise/instrumento.json`, o `CHANGELOG.md`, esta tabela, e crie a tag no git (`git tag v1.1.0`). O teste `tests/test_api.py` acusa se a versão do site e a do arquivo `VERSION` divergirem.
 
@@ -94,7 +97,7 @@ O plano gratuito do Supabase não faz backup automático e pausa projetos sem us
 
 - Na página **Acesso** do site (administrador), clique em **Baixar backup** ao fim de cada dia de coleta. O arquivo `FioAFio_backup_AAAA-MM-DD_HHMM.json` traz todas as coleções.
 - Guarde o arquivo fora do repositório público. Ele tem as respostas abertas e os nomes de quem respondeu o Q2 e o Q3.
-- Para restaurar: `python scripts/importar_artefato.py FioAFio_backup_....json` com o `.env` preenchido.
+- Para restaurar, a forma mais simples é pela página **Acesso** do site: **Restaurar backup**, escolha o arquivo e confirme. A restauração acrescenta e atualiza, nunca apaga. Alternativa pelo computador: `python scripts/importar_artefato.py FioAFio_backup_....json` com o `.env` preenchido.
 - Entre no site ao menos uma vez por semana para o projeto não ser pausado.
 
 ### 4. Trazer os dados do painel de testes (opcional)
@@ -106,7 +109,7 @@ Exporte os dados do artefato para JSON e rode `python scripts/importar_artefato.
 ```bash
 python -m venv .venv && . .venv/bin/activate
 pip install -r requirements-dev.txt
-pytest                                    # 21 testes
+pytest                                    # 22 testes
 FIO_DEV_SEM_AUTH=1 uvicorn api.main:app --reload --port 8765
 cp web/config.example.js web/config.js    # aponte API_URL para http://127.0.0.1:8765
 python -m http.server 8000 -d web
@@ -133,7 +136,7 @@ Gera em `saida/` as tabelas (temas com IC 95%, concordância, perfil com q de Be
 - Os questionários de pacientes são anônimos. Q2 e Q3 registram o nome (com opção de não se identificar) para controlar o censo; os nomes não aparecem nas análises.
 - Antes de coletar para publicação: aprovação no CEP (Resoluções CNS 466/2012 e 510/2016) e termo de consentimento.
 
-## Limitações conhecidas da versão 1.0
+## Limitações conhecidas da versão 1.3
 
 - A senha da conta dos avaliadores é trocada no painel do Supabase, não no site.
 - No link geral do Q3, a lista de nomes não mostra quem já respondeu; o banco recusa a segunda resposta da mesma pessoa.

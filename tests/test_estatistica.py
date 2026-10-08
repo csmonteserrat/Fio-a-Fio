@@ -116,3 +116,12 @@ def test_instrumento_igual_ao_site():
     html = (Path(__file__).parents[1] / "web" / "index.html").read_text(encoding="utf-8")
     for t in I.TEMAS:
         assert f'["{t["id"]}","{t["label"]}","{t["macro"]}"]' in html, t["id"]
+
+
+def test_matriz_fora_da_pratica_nao_conta_como_nota_baixa():
+    mid = E.I.MX[0]["id"]
+    q3 = [{"mx": {mid: {"f": 4, "i": 5}}}, {"mx": {mid: {"f": 2, "i": 3}}}, {"mx": {mid: {"na": True}}}, {}]
+    m = {x["id"]: x for x in E.matriz_equipe(q3)}[mid]
+    assert m["na"] == 1
+    assert m["f"]["n"] == 2 and abs(m["f"]["media"] - 3.0) < 1e-9
+    assert m["i"]["n"] == 2 and abs(m["i"]["media"] - 4.0) < 1e-9

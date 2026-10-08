@@ -1,4 +1,4 @@
-/* Projeto Fio a Fio · versão 1.0
+/* Projeto Fio a Fio · versão 1.3
  * Adaptador entre o painel e o Supabase.
  *
  * O painel nasceu como artefato do Claude e usa a interface claude.use("db"),
@@ -137,7 +137,30 @@
     return out;
   }
 
-  window.FIO = { backup: backup, sb: sb, api: api, cfg: C, carregarPerfil: carregarPerfil, perfil: function () { return perfil; },
+  // Restauração: acrescenta e atualiza (upsert por id). Nunca apaga.
+  async function restaurar(dados, progresso) {
+    var feito = {};
+    var nomes = Object.keys(TAB);
+    for (var i = 0; i < nomes.length; i++) {
+      var k = nomes[i], lista = dados[k];
+      if (!Array.isArray(lista) || !lista.length) continue;
+      var linhas = lista.filter(function (x) { return x && typeof x.id === "string" && x.id; }).map(function (x) {
+        var d = Object.assign({}, x); delete d.id; return { id: x.id, data: d };
+      });
+      feito[k] = 0;
+      for (var de = 0; de < linhas.length; de += 200) {
+        var lote = linhas.slice(de, de + 200);
+        var r = await sb.from(TAB[k]).upsert(lote, { onConflict: "id" });
+        if (r.error) throw erro(r.error);
+        feito[k] += lote.length;
+        if (progresso) progresso(k, feito[k]);
+      }
+      recarregar(k);
+    }
+    return feito;
+  }
+
+  window.FIO = { backup: backup, restaurar: restaurar, sb: sb, api: api, cfg: C, carregarPerfil: carregarPerfil, perfil: function () { return perfil; },
     recarregarTudo: function () { Object.keys(ouvintes).forEach(recarregar); } };
   window.claude = { use: async function (n) { return { db: db, user: user, sample: sample, downloads: downloads }[n] || null; } };
 })();

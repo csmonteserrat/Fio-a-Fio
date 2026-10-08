@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Painel Fio a Fio</title>
-<meta name="fio-version" content="1.0">
+<meta name="fio-version" content="1.3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
 <script src="https://unpkg.com/lucide@0.470.0/dist/umd/lucide.min.js"></script>
@@ -161,6 +161,7 @@ table.conv{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
 .fld .hint{font-size:12px;color:var(--secondary);margin:-4px 0 8px 36px}
 .fld .body{margin-left:36px}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
+.naow{margin-top:8px}
 .pill{position:relative;display:inline-flex}
 .pill input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
 .pill span{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 13px;font-size:12.5px;line-height:18px;background:var(--sunken);color:var(--body);cursor:pointer;transition:background 180ms var(--ease),color 180ms var(--ease);border:1px solid transparent}
@@ -195,7 +196,7 @@ table.conv{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
 .sel.code{background:var(--warn-soft);box-shadow:inset 0 0 0 1px var(--border-strong)}
 .meta3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .meta3 label{font-size:12px;font-weight:500;color:var(--secondary);display:flex;flex-direction:column;gap:4px}
-table.mx{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+table.mx{width:100%;border-collapse:collapse;font-size:12.5px;min-width:430px}.mx .seg span{width:23px}.mx td,.mx th{padding-left:4px;padding-right:4px}
 .mx th{font-size:11px;color:var(--secondary);font-weight:600;text-align:center;padding:0 6px 8px;text-transform:uppercase;letter-spacing:.02em}
 .mx th:first-child{text-align:left}
 .mx td{border-top:1px solid var(--divider);padding:6px}
@@ -206,6 +207,25 @@ table.mx{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
 .seg span{display:block;width:26px;text-align:center;border-radius:6px;font-size:12px;line-height:24px;font-weight:500;color:var(--secondary);cursor:pointer}
 .seg input:checked+span{background:var(--q3);color:#fff}
 .seg input:focus-visible+span{outline:2px solid var(--focus)}
+/* matriz do Q3: cores das notas */
+.seg.f input[value="1"]+span{box-shadow:inset 0 -3px 0 #278a4d}.seg.f input[value="1"]:checked+span{background:#278a4d;color:#fff;box-shadow:none;font-weight:700}
+.seg.i input[value="1"]+span{box-shadow:inset 0 -3px 0 #d63d3d}.seg.i input[value="1"]:checked+span{background:#d63d3d;color:#fff;box-shadow:none;font-weight:700}
+.seg.f input[value="2"]+span{box-shadow:inset 0 -3px 0 #8fbf3b}.seg.f input[value="2"]:checked+span{background:#8fbf3b;color:#1f2d08;box-shadow:none;font-weight:700}
+.seg.i input[value="2"]+span{box-shadow:inset 0 -3px 0 #ee8a2e}.seg.i input[value="2"]:checked+span{background:#ee8a2e;color:#3a1d00;box-shadow:none;font-weight:700}
+.seg.f input[value="3"]+span{box-shadow:inset 0 -3px 0 #f0c03c}.seg.f input[value="3"]:checked+span{background:#f0c03c;color:#3a2a00;box-shadow:none;font-weight:700}
+.seg.i input[value="3"]+span{box-shadow:inset 0 -3px 0 #f0c03c}.seg.i input[value="3"]:checked+span{background:#f0c03c;color:#3a2a00;box-shadow:none;font-weight:700}
+.seg.f input[value="4"]+span{box-shadow:inset 0 -3px 0 #ee8a2e}.seg.f input[value="4"]:checked+span{background:#ee8a2e;color:#3a1d00;box-shadow:none;font-weight:700}
+.seg.i input[value="4"]+span{box-shadow:inset 0 -3px 0 #8fbf3b}.seg.i input[value="4"]:checked+span{background:#8fbf3b;color:#1f2d08;box-shadow:none;font-weight:700}
+.seg.f input[value="5"]+span{box-shadow:inset 0 -3px 0 #d63d3d}.seg.f input[value="5"]:checked+span{background:#d63d3d;color:#fff;box-shadow:none;font-weight:700}
+.seg.i input[value="5"]+span{box-shadow:inset 0 -3px 0 #278a4d}.seg.i input[value="5"]:checked+span{background:#278a4d;color:#fff;box-shadow:none;font-weight:700}
+.mx th small{display:block;font-weight:400;text-transform:none;letter-spacing:0;font-size:10.5px;margin-top:2px;color:var(--secondary)}
+.mxnote{font-size:13px;line-height:20px;background:var(--sunken);border-radius:10px;padding:10px 14px;margin-bottom:12px}.mxnote p{margin:0 0 6px}.mxnote p:last-child{margin:0}
+.mxna{font:inherit;font-size:16px;line-height:1;width:30px;height:30px;border-radius:8px;border:1px solid var(--border-strong);background:var(--card);color:var(--secondary);cursor:pointer}
+.mxna:hover{border-color:var(--q3);color:var(--q3)}.mx tr.na .mxna{background:var(--q3);border-color:var(--q3);color:#fff}
+.mxlab{display:flex;align-items:center;gap:8px}.mxlab span{min-width:0}.mx th:first-child small{text-align:left}
+.mx tr.na .mxlab span{text-decoration:line-through;opacity:.55}.mx tr.na .seg{opacity:.3;pointer-events:none}
+.seg input:disabled{cursor:not-allowed}
+
 .ux{position:relative;display:inline-flex}
 .ux input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
 .ux span{width:28px;height:28px;border-radius:8px;background:var(--sunken);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted);cursor:pointer}
@@ -429,7 +449,7 @@ body.gate .side{display:none}
     <div class="aplab">Aplicar na tela</div>
     <div class="apl3"><button class="btn sm" data-apply="q1">Q1</button><button class="btn sm" data-apply="q2">Q2</button><button class="btn sm" data-apply="q3">Q3</button></div>
     <div class="sep"></div>
-    <div class="foot">Levantamento participativo de temas para os vídeos da sala de espera.<span class="ver" id="verTag">Versão 1.0</span></div>
+    <div class="foot">Levantamento participativo de temas para os vídeos da sala de espera.<span class="ver" id="verTag">Versão 1.2</span></div>
   </nav>
   <main id="main" style="min-width:0"></main>
 </div>
@@ -437,7 +457,7 @@ body.gate .side{display:none}
 
 <script>
 /* ---------------- dados do instrumento ---------------- */
-const FIO_VERSAO="1.0";window.FIO_VERSAO=FIO_VERSAO;
+const FIO_VERSAO="1.3";window.FIO_VERSAO=FIO_VERSAO;
 const MACROS=[
  ["vac","Vacinação"],["dm","Diabetes"],["has","Hipertensão arterial"],["sm","Saúde mental"],["ad","Álcool e outras drogas"],
  ["ist","IST / HIV / PrEP"],["pf","Planejamento familiar"],["pn","Pré-natal e saúde materna"],["am","Amamentação"],
@@ -498,20 +518,20 @@ const SCHEMA={
  q1:{prefix:"P",title:"Pacientes e comunidade",short:"Q1",color:"var(--q1)",parts:[
   {t:"Registro",f:[{k:"_meta",type:"meta",coleta:true}]},
   {t:"Parte 1 · Perfil",f:[
-    {k:"idade",n:1,type:"radio",label:"Faixa de idade",opts:OPT.idade},
-    {k:"genero",n:2,type:"radio",label:"Gênero com que se identifica",opts:OPT.genero},
-    {k:"tempo",n:3,type:"radio",label:"Tempo morando no Monte Serrat ou na área do CS",opts:OPT.tempoT}]},
+    {k:"idade",n:1,type:"radio",label:"Qual é a sua faixa de idade?",short:"Faixa de idade",opts:OPT.idade},
+    {k:"genero",n:2,type:"radio",label:"Com qual gênero você se identifica?",short:"Gênero com que se identifica",opts:OPT.genero},
+    {k:"tempo",n:3,type:"radio",label:"Há quanto tempo você mora no Monte Serrat ou na área do Centro de Saúde?",short:"Tempo morando no Monte Serrat ou na área do CS",opts:OPT.tempoT}]},
   {t:"Parte 2 · Temas de saúde",f:[
     {k:"temas",n:4,type:"groups",label:"Quais destes temas de saúde você gostaria de entender melhor? (marque quantos quiser)"},
-    {k:"q5",n:5,type:"ta",label:"Tema que gera dúvida e não está na lista"},
-    {k:"q6",n:6,type:"ta",label:"Fofoca do Portão: o que se ouve por aí e não se sabe se é verdade"},
-    {k:"q7",n:7,type:"ta",label:"O Muro: maior dificuldade ou barreira para cuidar da saúde ou vir ao CS"}]},
+    {k:"q5",n:5,type:"ta",nao:"Não",short:"Tema que gera dúvida e não está na lista",label:"Existe algum tema de saúde que te gera dúvida e que NÃO está na lista acima?"},
+    {k:"q6",n:6,type:"ta",short:"Fofoca do Portão: o que se ouve por aí e não se sabe se é verdade",label:"Tem alguma coisa que você ou alguém da sua família sempre ouve por aí sobre saúde, mas não sabe se é verdade?",hint:"Exemplos: “vacina causa autismo”, “pressão alta não tem sintoma”, “diabetes tipo 2 tem cura”…"},
+    {k:"q7",n:7,type:"ta",short:"O Muro: maior dificuldade ou barreira para cuidar da saúde ou vir ao CS",label:"Pensando na sua vida ou na vida de pessoas próximas, qual é a maior dificuldade, medo ou barreira que impede as pessoas de cuidarem da saúde ou de virem ao Centro de Saúde?",hint:"Exemplos: “Dá vergonha de perguntar”, “Acham que o médico só vai dar bronca”."}]},
   {t:"Parte 3 · TV da sala de espera",f:[
-    {k:"q8",n:8,type:"radio",label:"Presta atenção na TV enquanto espera?",opts:OPT.tv},
-    {k:"q9",n:9,type:"checks",label:"Tipo de vídeo mais útil (até 2)",opts:OPT.q9,max:2},
-    {k:"q10",n:10,type:"tc",label:"Pedido de vídeo",hint:"Transcreva o pedido e classifique no macro-tema (campo dourado)."},
-    {k:"q11",n:11,type:"ta",label:"A Tocha: para quem repassaria a informação"},
-    {k:"q12",n:12,type:"ta",label:"Sugestões para o CS"}]}]},
+    {k:"q8",n:8,type:"radio",label:"Você costuma prestar atenção no que passa na TV enquanto espera para ser atendido?",short:"Presta atenção na TV enquanto espera?",opts:OPT.tv},
+    {k:"q9",n:9,type:"checks",label:"Que tipo de vídeo você acharia mais útil ver na sala de espera? (Marque até 2)",short:"Tipo de vídeo mais útil (até 2)",opts:OPT.q9,max:2},
+    {k:"q10",n:10,type:"tc",nao:"Nenhum",short:"Pedido de vídeo",label:"Se você pudesse pedir um vídeo curto sobre saúde para passar aqui no posto, qual seria o tema?",hint:"Transcreva o pedido e classifique no macro-tema (campo dourado)."},
+    {k:"q11",n:11,type:"ta",short:"A Tocha: para quem repassaria a informação",label:"Se você aprendesse uma coisa muito importante sobre saúde num vídeo aqui no posto, para quem você repassaria essa informação depois? (Vizinha, filhos, marido, amigas?)"},
+    {k:"q12",n:12,type:"ta",short:"Sugestões para o CS",label:"Você tem alguma sugestão para o Centro de Saúde Monte Serrat melhorar as informações de saúde que chegam até você?",hint:"Dê exemplos: dicas pelo WhatsApp, Instagram etc."}]}]},
  q2:{prefix:"A",title:"Agentes Comunitários de Saúde",short:"Q2",color:"var(--q2)",parts:[
   {t:"Registro",f:[{k:"_meta",type:"meta"}]},
   {t:"Parte 1 · Identificação",f:[
@@ -542,7 +562,7 @@ const SCHEMA={
     {k:"q4",n:4,type:"abismo",short:"Abismo técnico-popular: onde chegam com pouca informação ou informação errada, e por quê",label:"Para quais desses problemas você percebe que os pacientes chegam ao serviço com pouca informação ou com informações erradas? Por que isso acontece na prática?",hint:"Clique em um dos problemas que você citou na pergunta 3 e escreva sobre ele. Você pode responder sobre mais de um."},
     {k:"temas",n:5,type:"groups",perGroup:2,urgent:3,urgReq:true,label:"Quais destes temas os pacientes deste território mais precisam entender melhor? Marque até 2 de cada grupo e, depois, os 3 mais urgentes."},
     {k:"q5",n:6,type:"multi",short:"Crenças equivocadas que dificultam o cuidado, nas palavras dos pacientes",label:"Quais são as PRINCIPAIS crenças equivocadas, mitos ou Fake News que os pacientes trazem para a consulta e que dificultam o cuidado?",hint:"Escreva como os pacientes expressam, com as palavras deles, não os termos técnicos.",labels:["Crença 1","Crença 2","Crença 3"]}]},
-  {t:"Parte 3 · Matriz de priorização",f:[{k:"mx",n:7,type:"matrix",short:"Matriz: frequência na demanda e potencial de impacto de um vídeo (1 a 5)",label:"Para cada tema abaixo, avalie com base na sua prática: com que frequência ele aparece na sua demanda e qual o potencial educativo dele, isto é, o quanto um vídeo poderia ajudar os pacientes nesse assunto.",hint:"Use notas de 1 (muito baixo) a 5 (muito alto)."}]},
+  {t:"Parte 3 · Matriz de priorização",f:[{k:"mx",n:7,type:"matrix",short:"Matriz: frequência na demanda e potencial de impacto de um vídeo (1 a 5)",label:"Para cada tema abaixo, avalie com base na sua prática: com que frequência ele aparece na sua demanda e qual o potencial educativo dele, isto é, o quanto um vídeo poderia ajudar os pacientes nesse assunto.",hint:"Notas de 1 a 5 em cada coluna. Leia a orientação abaixo antes de começar."}]},
   {t:"Parte 4 · Perspectiva pedagógica",f:[
     {k:"q6",n:8,type:"checks",short:"Maiores obstáculos para comportamentos saudáveis (até 2)",label:"Em sua experiência clínica, qual é o MAIOR obstáculo para que os pacientes deste território adotem comportamentos mais saudáveis? (Marque os dois principais)",opts:OPT.obst,max:2,other:"q6outro"},
     {k:"q7",n:9,type:"ta",short:"Tradução visual: imagem, analogia ou objeto que faz a ficha cair",label:"Tradução Visual (Metáforas / Signos Mediadores): se você pudesse usar uma imagem, uma analogia ou um objeto para explicar um problema de saúde complexo de forma que o paciente entenda o sentido pessoal (a “ficha caia”), qual seria?",hint:"Exemplos: “comparar a placa bacteriana com a sujeira que gruda na panela”, “mostrar a névoa do vape entrando no pulmão”."},
@@ -752,9 +772,12 @@ function fieldHTML(q,f){
   else if(f.type==="tcl")b=`<div class="tcl">${f.labels.map((l,i)=>`<div class="lbl">${esc(l)}</div><div class="tc"><input class="inp" id="${id}-${i}">${macroSel(`${id}-${i}-c`)}</div>`).join("")}</div>`;
   else if(f.type==="multi")b=f.labels.map((l,i)=>`<div class="row"><span>${esc(l)}</span><input class="inp" id="${id}-${i}"></div>`).join("");
   else if(f.type==="vocab")b=VOCAB.map((v,i)=>`<div class="row" style="grid-template-columns:minmax(0,13em) minmax(0,1fr)"><span style="white-space:normal">${esc(v)}</span><input class="inp" id="${id}-${i}" placeholder="como dizem"></div>`).join("");
-  else if(f.type==="matrix")b=`<div class="tw"><table class="mx"><thead><tr><th>Tema</th><th>Frequência na demanda</th><th>Potencial educativo</th></tr></thead><tbody>${MX.map(m=>`<tr><td>${esc(m.label)}</td>${["f","i"].map(k=>`<td style="text-align:center"><span class="seg">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="mx-${m.id}-${k}" value="${v}" id="mx-${m.id}-${k}-${v}" aria-label="${esc(m.label)} ${k==="f"?"frequência":"impacto"} ${v}"><span>${v}</span></label>`).join("")}</span></td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  else if(f.type==="matrix")b=`<div class="mxnote"><p><b>Como responder.</b> Dê duas notas por tema, de 1 a 5. <b>Frequência na demanda:</b> 1 = quase nunca aparece no meu atendimento, 5 = aparece o tempo todo. <b>Potencial educativo:</b> 1 = um vídeo ajudaria pouco, 5 = ajudaria muito.</p><p><b>Tema que não é da sua prática?</b> Clique no <b>×</b> da linha. Vale para o tema que não faz parte do seu trabalho (um dentista e planejamento familiar, por exemplo), que você prefere não avaliar ou que não sabe responder. O tema sai do cálculo e <b>não conta como nota baixa</b>. Se você preferir avaliar mesmo assim, porque enxerga a necessidade, dê as notas normalmente.</p><p><b>Use a escala toda.</b> Evite dar 5 (ou 1) para todos os temas: se tudo é prioridade, nada se destaca. Compare os temas entre si e deixe notas altas só para os que mais precisam.</p></div><div class="tw"><table class="mx"><thead><tr><th>Tema<small>× corta o tema (não se aplica)</small></th><th>Frequência<small>1 quase nunca<br>5 o tempo todo</small></th><th>Potencial educativo<small>1 ajudaria pouco<br>5 ajudaria muito</small></th></tr></thead><tbody>${MX.map(m=>`<tr data-mxr="${m.id}"><td><div class="mxlab"><button type="button" class="mxna" data-na="${m.id}" aria-pressed="false" title="Não faz parte da minha prática, prefiro não avaliar ou não sei responder" aria-label="Não se aplica: ${esc(m.label)}">×</button><span>${esc(m.label)}</span></div></td>${["f","i"].map(k=>`<td style="text-align:center"><span class="seg ${k}">${[1,2,3,4,5].map(v=>`<label><input type="radio" name="mx-${m.id}-${k}" value="${v}" id="mx-${m.id}-${k}-${v}" aria-label="${esc(m.label)} ${k==="f"?"frequência na demanda":"potencial educativo"} ${v}"><span>${v}</span></label>`).join("")}</span></td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  if(f.nao)b+=`<div class="pills naow"><label class="pill"><input type="checkbox" id="${id}-nao" data-nao="${id}"><span>${esc(f.nao)}</span></label></div>`;
   return`<div class="fld">${head}<div class="body">${b}</div></div>`;
 }
+function mxSetNa(id,on){const row=document.querySelector(`tr[data-mxr="${id}"]`);if(!row)return;row.classList.toggle("na",on);const b=row.querySelector(".mxna");if(b)b.setAttribute("aria-pressed",on?"true":"false");
+  row.querySelectorAll("input[type=radio]").forEach(i=>{if(on)i.checked=false;i.disabled=on})}
 /* Pergunta 4 do Q3: um campo de texto por problema citado na pergunta 3 */
 function abisProblemas(q){return[0,1,2].map(i=>(document.getElementById(`f-${q}-q3-${i}`)?.value||"").trim())}
 function abisSync(q,f){const ta=document.getElementById(`f-${q}-${f.k}-ta`);if(!ta)return;S.abis=S.abis||{};S.abisAtivo=S.abisAtivo||{};const a=S.abisAtivo[q];if(a==null)return;S.abis[q]=S.abis[q]||{};S.abis[q][a]=ta.value}
@@ -780,7 +803,8 @@ function readForm(q){
     else if(f.type==="tcl")o[f.k]=f.labels.map((_,i)=>({t:val(`${id}-${i}`),c:val(`${id}-${i}-c`)}));
     else if(f.type==="multi")o[f.k]=f.labels.map((_,i)=>val(`${id}-${i}`));
     else if(f.type==="vocab")o[f.k]=Object.fromEntries(VOCAB.map((v,i)=>[v,val(`${id}-${i}`)]));
-    else if(f.type==="matrix"){o.mx={};MX.forEach(m=>{const fv=document.querySelector(`input[name="mx-${m.id}-f"]:checked`)?.value,iv=document.querySelector(`input[name="mx-${m.id}-i"]:checked`)?.value;if(fv||iv)o.mx[m.id]={f:fv?+fv:null,i:iv?+iv:null}})}
+    else if(f.type==="matrix"){o.mx={};MX.forEach(m=>{if(document.querySelector(`tr[data-mxr="${m.id}"]`)?.classList.contains("na")){o.mx[m.id]={na:true};return}const fv=document.querySelector(`input[name="mx-${m.id}-f"]:checked`)?.value,iv=document.querySelector(`input[name="mx-${m.id}-i"]:checked`)?.value;if(fv||iv)o.mx[m.id]={f:fv?+fv:null,i:iv?+iv:null}})}
+    if(f.nao){const nb=document.getElementById(id+"-nao");o[f.k+"nao"]=!!(nb&&nb.checked);if(o[f.k+"nao"]){o[f.k]="";if(f.type==="tc")o[f.k+"c"]=""}}
     if(f.other)o[f.other]=val(`${q}-${f.other}`);
   }));return o;
 }
@@ -798,10 +822,14 @@ function fillForm(q,r){
       if(Array.isArray(it)){it.forEach(x=>{const i=pr.findIndex(y=>y&&y===x.p);if(i>=0)d[i]=x.t;else if(x.t)d.x=(d.x?d.x+"\n":"")+(x.p&&x.p!=="Outro problema"?x.p+": ":"")+x.t})}else if(r[f.k])d.x=r[f.k];
       S.abis[q]=d;S.abisAtivo=S.abisAtivo||{};S.abisAtivo[q]=null;abisDraw(q,f)}
     else if(f.type==="vocab")VOCAB.forEach((v,i)=>set(`${id}-${i}`,(r[f.k]||{})[v]));
-    else if(f.type==="matrix")MX.forEach(m=>{const v=(r.mx||{})[m.id]||{};["f","i"].forEach(k=>document.querySelectorAll(`input[name="mx-${m.id}-${k}"]`).forEach(i=>i.checked=+i.value===v[k]))});
+    else if(f.type==="matrix")MX.forEach(m=>{const v=(r.mx||{})[m.id]||{};mxSetNa(m.id,!!v.na);if(!v.na)["f","i"].forEach(k=>document.querySelectorAll(`input[name="mx-${m.id}-${k}"]`).forEach(i=>i.checked=+i.value===v[k]))});
+    if(f.nao){const nb=document.getElementById(id+"-nao");if(nb){nb.checked=!!r[f.k+"nao"];naoApply(id)}}
     if(f.other)set(`${q}-${f.other}`,r[f.other]);
   }));enforceMax();updateSaveState(q);
 }
+function naoApply(id){const nb=document.getElementById(id+"-nao");if(!nb)return;const on=nb.checked;
+  [id,id+"-c"].forEach(i=>{const e=document.getElementById(i);if(e){if(on)e.value="";e.disabled=on}})}
+document.addEventListener("change",e=>{const t=e.target;if(t&&t.dataset&&t.dataset.nao){naoApply(t.dataset.nao);if(typeof updateSaveState==="function"){const m=/^f-(q\d)-/.exec(t.dataset.nao);if(m)updateSaveState(m[1])}}});
 function nextCode(q){const p=SCHEMA[q].prefix;const n=Math.max(0,...S[q].map(r=>parseInt(String(r.code||"").replace(/\D/g,""))||0));return p+String(n+1).padStart(2,"0")}
 function enforceMax(){
   document.querySelectorAll(".pills[data-max]").forEach(p=>{const m=+p.dataset.max;if(!m)return;const ins=[...p.querySelectorAll("input")];const c=ins.filter(i=>i.checked).length;ins.forEach(i=>i.disabled=!i.checked&&c>=m)});
@@ -810,7 +838,7 @@ function enforceMax(){
     st.forEach(s=>{const it=s.closest(".pw").querySelector("input.it");if(!it.checked)s.checked=false});
     const c=st.filter(s=>s.checked).length;st.forEach(s=>{const it=s.closest(".pw").querySelector("input.it");s.disabled=!it.checked||(!s.checked&&c>=m)});
     const n=g.querySelectorAll("input.it:checked").length,cnt=g.parentElement.querySelector("[id$='-cnt']");if(cnt)cnt.textContent=`${n} marcado${n===1?"":"s"} · ${c} de ${m} urgentes`})}
-function fieldHas(f,r){const v=f.type==="matrix"?r.mx:r[f.k];if(Array.isArray(v))return v.some(x=>x&&(typeof x==="string"?x.trim():x.t));if(v&&typeof v==="object")return Object.values(v).some(Boolean);return!!(v&&String(v).trim())}
+function fieldHas(f,r){if(f.nao&&r[f.k+"nao"])return true;const v=f.type==="matrix"?r.mx:r[f.k];if(Array.isArray(v))return v.some(x=>x&&(typeof x==="string"?x.trim():x.t));if(v&&typeof v==="object")return Object.values(v).some(Boolean);return!!(v&&String(v).trim())}
 function fillInfo(q,r){let filled=0,total=0,own=0;SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="meta")return;total++;if(fieldHas(f,r)){filled++;if(!(q==="q3"&&f.k==="area"))own++}}));return{filled,total,own,pct:total?Math.round(filled/total*100):0}}
 const URG_Q3=3;
 function urgOk(q,r){return q!=="q3"||(r.temasU||[]).length===URG_Q3}
@@ -846,6 +874,7 @@ function wireForm(q){
   const frm=$("#frm");
   SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="abismo"){abisDraw(q,f);for(let i=0;i<3;i++){const e=document.getElementById(`f-${q}-q3-${i}`);if(e)e.addEventListener("input",()=>{abisSync(q,f);abisDraw(q,f)})}}}));
   const rs=$(`#${q}-resp`);if(rs&&q==="q3")rs.addEventListener("change",()=>{const ro=$("#q3-respOutro");if(ro){ro.hidden=rs.value!=="__outro__";if(!ro.hidden)ro.focus()}const cat=EQUIPE.find(([c,ns])=>ns.includes(rs.value))?.[0];if(!cat)return;document.querySelectorAll('input[name="f-q3-area"]').forEach(i=>i.checked=i.value===cat);updateSaveState(q)});
+  frm.addEventListener("click",e=>{const b=e.target.closest(".mxna");if(!b)return;const row=b.closest("tr");mxSetNa(b.dataset.na,!row.classList.contains("na"));updateSaveState(q)});
   frm.addEventListener("change",e=>{if(e.target.closest(".pills,.groups"))enforceMax();updateSaveState(q)});
   frm.addEventListener("input",()=>updateSaveState(q));
   // permitir desmarcar rádio
@@ -856,7 +885,7 @@ function wireForm(q){
 function summary(q,r){
   if(q==="q1")return`<b>${esc(r.idade||"idade não informada")}</b> · ${(r.temas||[]).length} tema${(r.temas||[]).length===1?"":"s"} marcado${(r.temas||[]).length===1?"":"s"}${r.q6?" · com mito":""}`;
   if(q==="q2")return`<b>${esc((r.q3||[]).map(x=>x.t).filter(Boolean).slice(0,2).join(", ")||"sem temas")}</b>${(r.q3||[]).some(x=>x.t&&!x.c)||(r.q11||[]).some(x=>x.t&&!x.c)?' · <span style="color:var(--warn-ink)">falta classificar</span>':""}`;
-  const m=Object.keys(r.mx||{}).length;return`<b>${esc(r.area||"área não informada")}</b> · matriz ${m}/18`;
+  const m=Object.keys(r.mx||{}).length,na=Object.values(r.mx||{}).filter(v=>v&&v.na).length;return`<b>${esc(r.area||"área não informada")}</b> · matriz ${m}/18${na?` (${na} fora da prática)`:""}`;
 }
 function renderList(q){
   const L=$("#list");if(!L)return;const arr=[...S[q]].sort((a,b)=>String(b.code).localeCompare(String(a.code),"pt",{numeric:true}));
@@ -899,12 +928,12 @@ function csvRows(q){
   SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{const L=`${f.n} ${f.short||f.label}`;
     if(f.type==="groups"){Q1ALL.forEach(t=>cols.push([`${f.n} ${t.label}`,r=>(r.temas||[]).includes(t.id)?1:0]));if(f.urgent)cols.push([`${f.n} mais urgentes`,r=>(r.temasU||[]).map(id=>Q1ALL.find(t=>t.id===id)?.label).filter(Boolean).join(" | ")])}
     else if(f.type==="checks")f.opts.forEach(o=>cols.push([`${f.n} ${o}`,r=>(r[f.k]||[]).includes(o)?1:0]));
-    else if(f.type==="tc"){cols.push([L,r=>r[f.k]]);cols.push([`${f.n} código`,r=>M[r[f.k+"c"]]?.label||""])}
+    else if(f.type==="tc"){cols.push([L,r=>r[f.k+"nao"]?f.nao:r[f.k]]);cols.push([`${f.n} código`,r=>M[r[f.k+"c"]]?.label||""])}
     else if(f.type==="tcl")f.labels.forEach((l,i)=>{cols.push([`${f.n} ${l}`,r=>(r[f.k]||[])[i]?.t]);cols.push([`${f.n} ${l} código`,r=>M[(r[f.k]||[])[i]?.c]?.label||""])});
     else if(f.type==="multi")f.labels.forEach((l,i)=>cols.push([`${f.n} ${l}`,r=>(r[f.k]||[])[i]]));
     else if(f.type==="vocab")VOCAB.forEach(v=>cols.push([`7 ${v}`,r=>(r.q7||{})[v]]));
-    else if(f.type==="matrix")MX.forEach(m=>{cols.push([`${m.label} F`,r=>r.mx?.[m.id]?.f]);cols.push([`${m.label} I`,r=>r.mx?.[m.id]?.i]);0});
-    else if(f.type!=="meta")cols.push([L,r=>r[f.k]]);
+    else if(f.type==="matrix")MX.forEach(m=>{cols.push([`${m.label} F`,r=>r.mx?.[m.id]?.na?"n/a":r.mx?.[m.id]?.f]);cols.push([`${m.label} I`,r=>r.mx?.[m.id]?.na?"n/a":r.mx?.[m.id]?.i])});
+    else if(f.type!=="meta")cols.push([L,r=>f.nao&&r[f.k+"nao"]?f.nao:r[f.k]]);
     if(f.other)cols.push([`${f.n} outra`,r=>r[f.other]]);
   }));
   const cell=v=>{const s=v==null?"":String(v);return/[";\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s};
@@ -1037,7 +1066,7 @@ function renderStats(){
       <table class="stt" style="margin-top:14px"><thead><tr><th>Faixa etária</th><th class="r">n</th><th class="r">Mediana</th><th class="r">IIQ</th></tr></thead><tbody>${PP.faixas.map((o,i)=>{const d=PP.por_idade[i];return`<tr><td>${esc(o)}</td><td class="r num">${PP.n_idade[i]}</td><td class="r num">${d?fnum(d.mediana,0):"–"}</td><td class="r num">${d?fnum(d.q1,0)+" a "+fnum(d.q3,0):""}</td></tr>`}).join("")}</tbody></table>
       <p class="sub" style="margin:10px 0 0">${kw?(kw.p<.05?`<b class="sigtxt">Kruskal-Wallis: H = ${fnum(kw.H,2)}, gl = ${kw.df}, p ${fp(kw.p)}. Há diferença entre as faixas etárias.</b>`:`Kruskal-Wallis: H = ${fnum(kw.H,2)}, gl = ${kw.df}, p ${fp(kw.p)}. Sem diferença entre as faixas etárias.`):"Dados insuficientes para comparar faixas etárias."}</p>`:`<div class="empty-mini">Sem respostas ainda.</div>`}</section>
     <section class="panel"><header><div><h2>Matriz da equipe</h2><div class="sub">Q3 · pergunta 7 · média (IC 95%) e mediana</div></div></header>
-     ${R.grupos.q3.n?`<div class="tw"><table class="stt"><thead><tr><th>Macro-tema</th><th class="r">n</th><th class="r">Frequência</th><th class="r">Impacto</th><th class="r">Med F / I</th></tr></thead><tbody>${R.matriz.map(x=>`<tr><td>${esc(x.rotulo)}</td><td class="r num">${x.f?x.f.n:0}</td><td class="r num">${x.f?`${fnum(x.f.media)} <small class="sub">(${fnum(x.f.lo)} a ${fnum(x.f.hi)})</small>`:"–"}</td><td class="r num">${x.i?`${fnum(x.i.media)} <small class="sub">(${fnum(x.i.lo)} a ${fnum(x.i.hi)})</small>`:"–"}</td><td class="r num">${x.f&&x.i?fnum(x.f.mediana,0)+" / "+fnum(x.i.mediana,0):""}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty-mini">Sem respostas da equipe.</div>`}</section>
+     ${R.grupos.q3.n?`<div class="tw"><table class="stt"><thead><tr><th>Macro-tema</th><th class="r">n</th><th class="r">Frequência</th><th class="r">Potencial educativo</th><th class="r">Med F / I</th><th class="r">Fora da prática</th></tr></thead><tbody>${R.matriz.map(x=>`<tr><td>${esc(x.rotulo)}</td><td class="r num">${x.f?x.f.n:0}</td><td class="r num">${x.f?`${fnum(x.f.media)} <small class="sub">(${fnum(x.f.lo)} a ${fnum(x.f.hi)})</small>`:"–"}</td><td class="r num">${x.i?`${fnum(x.i.media)} <small class="sub">(${fnum(x.i.lo)} a ${fnum(x.i.hi)})</small>`:"–"}</td><td class="r num">${x.f&&x.i?fnum(x.f.mediana,0)+" / "+fnum(x.i.mediana,0):""}</td><td class="r num">${x.na||0}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty-mini">Sem respostas da equipe.</div>`}</section>
    </div>
    <div class="grid g2">
     <section class="panel"><header><div><h2>Atenção à TV</h2><div class="sub">Q1 · pergunta 8</div></div></header>${propTable(R.proporcoes.q8.itens,R.proporcoes.q8.n,"var(--q1)")}</section>
@@ -1057,7 +1086,7 @@ function renderStats(){
   $("#stExp").onclick=()=>exportStats(R);
 }
 function completude(D){
-  return["q1","q2","q3"].map(q=>{const recs=D[q],rows=[];SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="meta")return;const has=r=>{const v=f.type==="matrix"?r.mx:r[f.k];if(Array.isArray(v))return v.some(x=>x&&(typeof x==="string"?x.trim():x.t));if(v&&typeof v==="object")return Object.values(v).some(Boolean);return!!(v&&String(v).trim())};
+  return["q1","q2","q3"].map(q=>{const recs=D[q],rows=[];SCHEMA[q].parts.forEach(p=>p.f.forEach(f=>{if(f.type==="meta")return;const has=r=>{if(f.nao&&r[f.k+"nao"])return true;const v=f.type==="matrix"?r.mx:r[f.k];if(Array.isArray(v))return v.some(x=>x&&(typeof x==="string"?x.trim():x.t));if(v&&typeof v==="object")return Object.values(v).some(Boolean);return!!(v&&String(v).trim())};
     rows.push({n:f.n,label:f.short||f.label,k:recs.filter(has).length})}));return{q,n:recs.length,rows}})}
 function rankScatter(T,ra,rb,b){
   const n=T.length,W=360,H=300,L=36,R=12,Tp=10,B=34;
@@ -1372,7 +1401,7 @@ const TUT={
    int:"\"Equipe vê, comunidade não pede\": necessidade não percebida. Pede um vídeo que desperte curiosidade e problematize, partindo de uma situação reconhecível. \"Comunidade pede, equipe não vê\": demanda não vista. Vale levar para a reunião de equipe: pode ser lacuna do serviço, e o vídeo pode responder diretamente à pergunta da comunidade.",
    warn:"Pacientes marcam à vontade e ACS e equipe marcam até 2 por grupo. Por isso a comparação é de posição, nunca de porcentagem bruta. Com poucos ACS, um único ACS muda bastante o resultado."},
   {t:"O que a comunidade quer entender",in:"Pergunta 4 do Q1.",read:"Os 15 temas mais marcados pelos pacientes, com o número e a porcentagem de respondentes.",int:"É a voz da comunidade sem mediação. Os primeiros temas costumam ser os de maior adesão na sala de espera.",warn:"Não mostra incerteza. Para saber se um tema é de fato mais citado que outro, use os intervalos de confiança na Estatística."},
-  {t:"Matriz da equipe",in:"Pergunta 7 do Q3 (frequência e impacto de 1 a 5 por macro-tema) e as estrelas de urgência da pergunta 5.",read:"Cada ponto é um macro-tema. Para a direita, mais frequente na demanda; para cima, maior o impacto esperado de um vídeo. Ponto maior: mais estrelas de urgência. A área destacada reúne os temas frequentes e de alto impacto.",int:"Temas na área destacada são prioridade clínica. Um tema de alto impacto e baixa frequência pode valer um vídeo preventivo.",warn:"São médias. Se a equipe discordar muito entre si, a média esconde isso: veja os intervalos de confiança na Estatística."},
+  {t:"Matriz da equipe",in:"Pergunta 7 do Q3 (frequência e impacto de 1 a 5 por macro-tema) e as estrelas de urgência da pergunta 5.",read:"Cada ponto é um macro-tema. Para a direita, mais frequente na demanda; para cima, maior o potencial educativo. Quem marcou × no tema (fora da prática, prefere não avaliar ou não sabe) fica fora da média daquele tema. Ponto maior: mais estrelas de urgência. A área destacada reúne os temas frequentes e de alto impacto.",int:"Temas na área destacada são prioridade clínica. Um tema de alto impacto e baixa frequência pode valer um vídeo preventivo.",warn:"São médias. Se a equipe discordar muito entre si, a média esconde isso: veja os intervalos de confiança na Estatística."},
   {t:"Atenção à TV, formato e quem respondeu",in:"Perguntas 1, 2, 8 e 9 do Q1.",read:"Distribuição das respostas com número e porcentagem.",int:"Atenção à TV e formato orientam o jeito do vídeo (duração, animação, depoimentos). O perfil mostra quem a amostra representa.",warn:"Se quase só mulheres ou só uma faixa de idade responderam, os resultados refletem esse grupo. Vale buscar respondentes que faltam antes de fechar a coleta."},
   {t:"Barreiras e obstáculos",in:"Pergunta 9 do Q2 (por que não buscam o CS) e pergunta 8 do Q3 (obstáculos ao autocuidado).",read:"Quantos ACS ou profissionais marcaram cada opção.",int:"Alimentam os muros, as situações-limite dos roteiros. Uma barreira muito citada pode virar o conflito central de um vídeo.",warn:"Os grupos são pequenos: leia como tendência."}
  ]},
@@ -1401,7 +1430,7 @@ const TUT={
    read:"Média e desvio padrão (DP); mediana e intervalo interquartil (IIQ, onde ficam os 50% do meio); IC 95% da média. A tabela mostra a mediana por faixa etária, e o teste de Kruskal-Wallis compara as faixas. Fica em negrito se p < 0,05.",
    int:"Mediana muito diferente da média indica distribuição assimétrica; nesse caso, relate a mediana. Kruskal-Wallis significativo quer dizer que pelo menos uma faixa marca mais ou menos temas, sem dizer qual: olhe a tabela.",
    warn:"Marcar muitos temas pode indicar interesse real ou pouca discriminação. Combine com as estrelas e com os pedidos de vídeo."},
-  {t:"Matriz da equipe",in:"Pergunta 7 do Q3.",read:"Para frequência e impacto: média, IC 95% (pela distribuição t) e mediana. Ordenado pelo produto das médias.",int:"Intervalos estreitos mostram que a equipe concorda; intervalos largos, que discorda. Discordância grande merece conversa antes de decidir o tema.",warn:"Com poucos profissionais, prefira a mediana e não leia diferenças pequenas entre médias."},
+  {t:"Matriz da equipe",in:"Pergunta 7 do Q3.",read:"Para frequência e potencial educativo: média, IC 95% (pela distribuição t) e mediana. Ordenado pelo produto das médias. A coluna n mostra quantos profissionais entraram em cada tema, e a coluna Fora da prática quantos o cortaram com ×.",int:"Intervalos estreitos mostram que a equipe concorda; intervalos largos, que discorda. Discordância grande merece conversa antes de decidir o tema.",warn:"Com poucos profissionais, prefira a mediana e não leia diferenças pequenas entre médias. Temas com muitos cortes têm n pequeno: leia com cautela."},
   {t:"Proporções de TV, formato, barreiras e obstáculos",in:"Q1 perguntas 8 e 9; Q2 pergunta 9; Q3 pergunta 8.",read:"Como na tabela de temas: n, %, IC 95% de Wilson.",int:"Use os intervalos para dizer com honestidade o quanto se sabe. Ex.: \"46% prestam atenção à TV às vezes (IC 95%: 32% a 60%)\".",warn:"No formato preferido cada pessoa marca até 2, então a soma passa de 100%."},
   {t:"Completude das respostas",in:"Todas as perguntas dos três questionários.",read:"Porcentagem de questionários com cada pergunta respondida. Barras vermelhas: menos da metade respondeu.",int:"Pergunta muito vazia pode estar confusa, longa demais ou constrangedora. Relate a falta e evite tirar conclusões dela.",warn:"Pergunta aberta vazia nem sempre é falha: às vezes a pessoa não tinha o que dizer."},
   {t:"Texto para métodos e exportação",in:"As análises da página.",read:"O rascunho descreve os testes usados com o n atual. \"Exportar tabelas\" gera um CSV que abre no Excel com todas as tabelas, IC, p e q.",int:"Revise o texto, inclua período e local de coleta e cite os métodos: Wilson (1927), Spearman, Kendall, Fisher, qui-quadrado de Pearson, Kruskal-Wallis e Benjamini e Hochberg (1995).",warn:"O texto muda conforme os dados. Copie a versão final só quando a coleta terminar."}
@@ -1560,7 +1589,11 @@ function renderAccess(){
     ${Object.keys(ap).length?`<div class="tw"><table class="stt"><thead><tr><th>Nome</th><th class="r">Q1</th><th class="r">Q2</th><th class="r">Q3</th><th class="r">Total</th></tr></thead><tbody>${Object.entries(ap).sort((a,b)=>(b[1].q1+b[1].q2+b[1].q3)-(a[1].q1+a[1].q2+a[1].q3)).map(([n,c])=>`<tr><td>${esc(n)}</td><td class="r num">${c.q1}</td><td class="r num">${c.q2}</td><td class="r num">${c.q3}</td><td class="r num"><b>${c.q1+c.q2+c.q3}</b></td></tr>`).join("")}</tbody></table></div>`:`<div class="empty-mini">Nenhum questionário ainda.</div>`}</section></div>
    <section class="panel"><header><div><h2>Backup dos dados</h2><div class="sub">Baixa uma cópia de tudo: questionários, códigos, categorias, fichas e links</div></div></header>
     <p class="leadp" style="font-size:13.5px">O plano gratuito do Supabase não faz backup automático. Baixe uma cópia ao fim de cada dia de coleta e guarde fora do repositório público. O arquivo tem as respostas abertas e, nos questionários Q2 e Q3, os nomes de quem respondeu, então trate como dado sensível. Para restaurar, use <code>python scripts/importar_artefato.py arquivo.json</code>.</p>
-    <div class="actions"><button class="btn pri" id="bkBtn"><i data-lucide="database-backup"></i>Baixar backup</button><span class="sub" id="bkInfo"></span></div></section>`;
+    <div class="actions"><button class="btn pri" id="bkBtn"><i data-lucide="database-backup"></i>Baixar backup</button><span class="sub" id="bkInfo"></span></div></section>
+   <section class="panel"><header><div><h2>Restaurar backup</h2><div class="sub">Envia para o site um arquivo de backup baixado antes</div></div></header>
+    <p class="leadp" style="font-size:13.5px">A restauração <b>acrescenta o que falta e atualiza os registros com o mesmo identificador</b>. Ela não apaga nada. Serve para recolocar dados depois de uma perda ou para trazer a coleta feita no painel de testes.</p>
+    <div class="actions"><label class="btn" for="rsFile" style="cursor:pointer"><i data-lucide="upload"></i>Escolher arquivo de backup</label><input type="file" id="rsFile" accept=".json,application/json" hidden><span class="sub" id="rsInfo"></span></div>
+    <div id="rsPrev"></div></section>`;
   icons();
   (function(){let ult="";try{ult=localStorage.getItem("fio-backup")||""}catch(e){}const i=$("#bkInfo");if(!i)return;
     if(!ult){i.textContent="Nenhum backup baixado neste navegador ainda.";return}
@@ -1572,6 +1605,22 @@ function renderAccess(){
       try{localStorage.setItem("fio-backup",ag.toISOString())}catch(e2){}
       toast(`Backup baixado: ${n} registro${n===1?"":"s"}`);$("#bkInfo").textContent=`Último backup neste navegador: ${ag.toLocaleString("pt-BR")}`}
     catch(err){toast("Não foi possível gerar o backup. Confira a conexão e tente de novo.")}b.disabled=false};
+  $("#rsFile").onchange=async e=>{const file=e.target.files[0];e.target.value="";const prev=$("#rsPrev"),info=$("#rsInfo");prev.innerHTML="";if(!file)return;info.textContent=file.name;
+    let dados;try{dados=JSON.parse(await file.text())}catch(err){prev.innerHTML='<p class="gerr">Não consegui ler este arquivo. Ele precisa ser um backup em JSON baixado aqui.</p>';return}
+    const nomes={q1:"Questionários Q1",q2:"Questionários Q2",q3:"Questionários Q3",codes:"Códigos",cats:"Categorias",cod:"Codificações",sug:"Sugestões do Claude",temas:"Fichas de temas geradores",links:"Links online"};
+    const lin=Object.keys(nomes).filter(k=>Array.isArray(dados[k])&&dados[k].length).map(k=>({k,n:dados[k].filter(x=>x&&typeof x.id==="string"&&x.id).length,atual:(S[k]||[]).length}));
+    if(!lin.length){prev.innerHTML='<p class="gerr">Este arquivo não tem registros que o site reconheça.</p>';return}
+    const tot=lin.reduce((a,x)=>a+x.n,0);const quando=dados._meta&&dados._meta.geradoEm?new Date(dados._meta.geradoEm).toLocaleString("pt-BR"):"data não informada";
+    prev.innerHTML=`<p class="sub" style="margin:12px 0 6px">Backup gerado em ${esc(quando)}. Conteúdo:</p><div class="tw"><table class="stt"><thead><tr><th>Coleção</th><th class="r">No arquivo</th><th class="r">Agora no site</th></tr></thead><tbody>${lin.map(x=>`<tr><td>${esc(nomes[x.k])}</td><td class="r num">${x.n}</td><td class="r num">${x.atual}</td></tr>`).join("")}</tbody></table></div>
+      <label class="chk" style="display:flex;gap:8px;align-items:center;margin:10px 0"><input type="checkbox" id="rsPre" checked> Baixar um backup do estado atual antes de restaurar (recomendado)</label>
+      <div class="actions"><button class="btn pri" id="rsGo"><i data-lucide="history"></i>Restaurar ${tot} registro${tot===1?"":"s"}</button><button class="btn ghost" id="rsNo">Cancelar</button></div>`;icons();
+    $("#rsNo").onclick=()=>{prev.innerHTML="";info.textContent=""};
+    $("#rsGo").onclick=async ev=>{const b=ev.currentTarget;if(!b.dataset.arm){b.dataset.arm="1";b.innerHTML="Confirmar restauração";b.classList.add("danger");setTimeout(()=>{if(b.isConnected&&b.dataset.arm){delete b.dataset.arm;b.classList.remove("danger");b.innerHTML=`<i data-lucide="history"></i>Restaurar ${tot} registro${tot===1?"":"s"}`;icons()}},5000);return}
+      b.disabled=true;$("#rsNo").disabled=true;
+      try{if($("#rsPre").checked){const atual=await FIO.backup();const dl=await claude.use("downloads");const ag=new Date(),pad=x=>String(x).padStart(2,"0");await dl.save({filename:`FioAFio_antes-de-restaurar_${ag.getFullYear()}-${pad(ag.getMonth()+1)}-${pad(ag.getDate())}_${pad(ag.getHours())}${pad(ag.getMinutes())}.json`,data:JSON.stringify(atual,null,1)})}
+        const r=await FIO.restaurar(dados,(k,n)=>{info.textContent=`Restaurando… ${nomes[k]||k}: ${n}`});
+        const feitos=Object.values(r).reduce((a,x)=>a+x,0);prev.innerHTML=`<p class="sub" style="margin-top:12px"><b>Restauração concluída:</b> ${feitos} registro${feitos===1?"":"s"} enviado${feitos===1?"":"s"}. O painel já foi atualizado.</p>`;info.textContent="";toast("Backup restaurado")}
+      catch(err){b.disabled=false;$("#rsNo").disabled=false;delete b.dataset.arm;toast("A restauração falhou. Nada foi apagado. Confira a conexão e tente de novo.")}}};
   $("#pwMe").onsubmit=async e=>{e.preventDefault();const [a,b]=[...e.target.querySelectorAll("input")].map(i=>i.value);if(a.length<8){toast("Use pelo menos 8 caracteres.");return}if(a!==b){toast("As senhas não conferem.");return}
     const {error}=await FIO.sb.auth.updateUser({password:a});if(error)toast("Não foi possível trocar a senha.");else{e.target.reset();toast("Senha trocada")}};
 }
