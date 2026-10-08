@@ -1428,6 +1428,7 @@ const ART_URL=location.origin+location.pathname;
 const onlineLink=tok=>`${ART_URL}#online-q3${tok?"-"+tok:""}`;
 const INTRO_ONLINE="Este questionário reúne a perspectiva da equipe do Centro de Saúde Monte Serrat para escolher os temas dos vídeos educativos da sala de espera (Projeto Fio a Fio). Leva de 15 a 25 minutos. Suas respostas serão usadas apenas na análise interna do projeto.";
 async function copyText(t){try{await navigator.clipboard.writeText(t);toast("Link copiado");return true}catch(e){return false}}
+function emailDeUsuario(v){v=(v||"").trim().toLowerCase();return v.includes("@")?v:v+"@"+((FIO.cfg&&FIO.cfg.DOMINIO_EMAIL)||"fioafio.app")}
 function showLinkBox(link,title){const box=$("#linkBox");if(!box)return;box.innerHTML=`<div class="linkbox"><b>${esc(title)}</b><input class="inp" readonly value="${esc(link)}" id="lbIn"><div class="actions"><button class="btn sm pri" id="lbCp"><i data-lucide="copy"></i>Copiar</button><button class="btn sm ghost" id="lbX">Fechar</button></div><p class="sub">Qualquer pessoa com o link consegue responder, sem login. Envie por WhatsApp ou e-mail.</p></div>`;icons();
   $("#lbCp").onclick=async()=>{if(!await copyText(link)){const i=$("#lbIn");i.focus();i.select();toast("Selecionado: use Copiar do sistema")}};$("#lbX").onclick=()=>box.innerHTML="";$("#lbIn").onclick=e=>e.target.select()}
 const INTRO={
@@ -1487,7 +1488,7 @@ function renderGate(){
     <button class="role" data-role="aval"><i data-lucide="clipboard-pen"></i><b>Avaliador</b><span>Aplicar os questionários com pacientes, ACS ou equipe</span></button>
     <button class="role" data-role="admin"><i data-lucide="shield-check"></i><b>Administrador</b><span>Acesso a tudo: digitação, panorama, análises e configurações</span></button></div>`;
   else if(g.step==="pw")body=`<button class="btn ghost sm gback" id="gb"><i data-lucide="arrow-left"></i>Voltar</button><h2>${g.role==="admin"?"Administrador":"Avaliador"}</h2><p class="sub">${g.role==="admin"?"Entre com seu e-mail e senha.":"Digite a senha dos avaliadores."}</p>
-    <form id="gf" class="gform" autocomplete="on">${g.role==="admin"?`<label>E-mail<input class="inp" type="email" id="gem" autocomplete="username"></label>`:""}<label>Senha<input class="inp" type="password" id="gpw" autocomplete="current-password"></label>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Continuar</button></form>`;
+    <form id="gf" class="gform" autocomplete="on">${g.role==="admin"?`<label>Usuário<input class="inp" type="text" id="gem" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="ex.: caio"></label>`:""}<label>Senha<input class="inp" type="password" id="gpw" autocomplete="current-password"></label>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Continuar</button></form>`;
   else if(g.step==="name")body=`<h2>Quem está aplicando?</h2><p class="sub">Seu nome fica registrado em cada questionário que você aplicar.</p>
     <form id="gf" class="gform" autocomplete="off"><label>Seu nome<input class="inp" id="gname" list="staffList" value="${esc(g.lastName||"")}" autocomplete="name" placeholder="Comece a digitar e escolha"></label><datalist id="staffList">${ALL_STAFF.map(n=>`<option value="${esc(n)}"></option>`).join("")}</datalist>${g.err?`<p class="gerr">${esc(g.err)}</p>`:""}<button class="btn pri" type="submit">Entrar</button></form>`;
   $("#main").innerHTML=`<div class="gate"><div class="gcard"><div class="gmark">${MARK}<div><b>Fio a Fio</b><small>CS Monte Serrat · Levantamento de temas</small></div></div>${body}<div class="gver">Versão ${FIO_VERSAO}</div></div></div>`;
@@ -1496,9 +1497,9 @@ function renderGate(){
   const gb=$("#gb");if(gb)gb.onclick=()=>{S.gate={step:"role"};render()};
   const f=$("#gf");if(!f)return;setTimeout(()=>f.querySelector("input")?.focus(),50);
   f.onsubmit=async e=>{e.preventDefault();const btn=f.querySelector("button");
-    if(g.step==="pw"){const email=g.role==="admin"?$("#gem").value.trim():FIO.cfg.AVALIADOR_EMAIL;btn.disabled=true;
+    if(g.step==="pw"){const email=g.role==="admin"?emailDeUsuario($("#gem").value):FIO.cfg.AVALIADOR_EMAIL;btn.disabled=true;
       const {error}=await FIO.sb.auth.signInWithPassword({email,password:$("#gpw").value});
-      if(error){S.gate={...g,err:g.role==="admin"?"E-mail ou senha incorretos.":"Senha incorreta."};render();return}
+      if(error){S.gate={...g,err:g.role==="admin"?"Usuário ou senha incorretos.":"Senha incorreta."};render();return}
       const p=await FIO.carregarPerfil();const papel=p&&p.papel;
       if(!papel){await FIO.sb.auth.signOut();S.gate={...g,err:"Esta conta ainda não tem permissão no painel."};render();return}
       if(g.role==="admin"&&papel!=="admin"){await FIO.sb.auth.signOut();S.gate={...g,err:"Esta conta não é de administrador."};render();return}

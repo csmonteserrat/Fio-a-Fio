@@ -9,6 +9,7 @@ window.FIO_CONFIG = {
   SUPABASE_URL: "${SUPABASE_URL}",
   SUPABASE_ANON_KEY: "${SUPABASE_ANON_KEY}",
   API_URL: "${API_URL}",
+  DOMINIO_EMAIL: "${DOMINIO_EMAIL:-fioafio.app}",
   AVALIADOR_EMAIL: "${AVALIADOR_EMAIL:-avaliador@fioafio.app}"
 };
 CFG

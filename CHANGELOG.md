@@ -9,7 +9,7 @@ Primeira versão completa, construída e testada como artefato no Claude e migra
 - Pergunta 4 com a mesma lista de 41 temas nos três grupos, incluindo o grupo Saúde bucal; ACS e equipe marcam até 2 por grupo e os 3 mais urgentes.
 - Q2 e Q3 com a lista nominal da equipe do CS Monte Serrat, controle de quem já respondeu e opção de não se identificar; no Q3, nome livre para quem não está na lista.
 - Q3 por link online: link pessoal (uso único) ou geral.
-- Entrada como avaliador (só aplica questionários) ou administrador (acesso a tudo).
+- Entrada como avaliador (só aplica questionários) ou administrador (acesso a tudo). O administrador entra só com o nome de usuário; o `@fioafio.app` é completado pelo site.
 
 **Análise**
 - Panorama com temas convergentes, comparação das três escutas e metas de resposta (50 pacientes, 9 ACS, 31 profissionais).

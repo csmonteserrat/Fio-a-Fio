@@ -12,7 +12,7 @@ Painel para aplicar, digitar e analisar os questionários do Projeto Fio a Fio, 
 
 | Versão | Data | Onde roda | O que mudou |
 |---|---|---|---|
-| **1.0** | 2026-10-08 | Artefato de testes no Claude e este repositório (site ainda não publicado) | Primeira versão completa. Veja o [CHANGELOG](CHANGELOG.md). |
+| **1.0** | 2026-10-08 | Site no Render: https://fioafio-site.onrender.com/ (e artefato de testes no Claude) | Primeira versão completa. Veja o [CHANGELOG](CHANGELOG.md). |
 
 A versão aparece no menu lateral do site, na tela de entrada e em `GET /api/saude`. Ao publicar uma versão nova, atualize nesta ordem: `VERSION`, `FIO_VERSAO` no `web/index.html`, `versao` em `analise/instrumento.json`, o `CHANGELOG.md`, esta tabela, e crie a tag no git (`git tag v1.1.0`). O teste `tests/test_api.py` acusa se a versão do site e a do arquivo `VERSION` divergirem.
 
@@ -55,10 +55,13 @@ render.yaml         deploy no Render (Blueprint)
 1. Crie um projeto em [supabase.com](https://supabase.com), na região **South America (São Paulo)**.
 2. Em **SQL Editor**, cole e rode `supabase/schema.sql`.
 3. Em **Authentication > Users > Add user**, crie, marcando *Auto Confirm User*:
-   - a sua conta de administrador (e as de outros administradores, se houver);
+   - a sua conta de administrador (e as de outros administradores, se houver). No site o login é só o nome antes do `@`, e o `@fioafio.app` é completado sozinho. Então crie a conta como `caio@fioafio.app` para entrar digitando `caio`. O domínio pode ser trocado com a variável `DOMINIO_EMAIL` do site no Render;
    - a conta única dos avaliadores, `avaliador@fioafio.app` (o e-mail pode ser fictício).
 4. Dê o papel de cada conta rodando o bloco comentado no fim do `schema.sql`, trocando os e-mails.
-5. Em **Project Settings > API**, copie a *Project URL* e a chave *anon public*. A chave *service_role* nunca vai para o site.
+5. Copie a *Project URL* e a chave pública:
+   - **Project URL**: botão **Connect**, no topo do painel do projeto (ou **Settings > Data API**, campo *API URL*).
+   - **Chave pública**: **Settings > API Keys**, aba *Publishable and secret API keys*, chave `sb_publishable_...`. Ela vai em `SUPABASE_ANON_KEY` (o nome da variável ficou assim por compatibilidade). Se o seu projeto só mostrar o formato antigo, use a chave *anon* da aba *Legacy API Keys*; as duas funcionam.
+   - **Chave secreta**: a `sb_secret_...` (ou *service_role*, no formato antigo) só vai no `.env` do seu computador como `SUPABASE_SERVICE_ROLE_KEY`, para exportar e importar dados. Nunca vai para o site, para o Render nem para o GitHub.
 
 ### 2. GitHub
 
@@ -66,11 +69,22 @@ Suba esta pasta para um repositório. Pode ser público: não há dados nem segr
 
 ### 3. Render
 
-1. **New > Blueprint**, escolha o repositório. O `render.yaml` cria dois serviços: `fioafio-api` (Python) e `fioafio-site` (estático).
-2. Preencha as variáveis:
-   - API: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `WEB_ORIGIN` (endereço do site, ex. `https://fioafio-site.onrender.com`) e, para as sugestões do Claude, `ANTHROPIC_API_KEY`.
-   - Site: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `API_URL` (endereço da API, ex. `https://fioafio-api.onrender.com`).
-3. Abra o site, entre como administrador e confira a página Estatística.
+1. **Escolha os nomes antes.** O endereço `nome.onrender.com` é definido quando o serviço é criado. Renomear depois, em *Settings > Name*, muda só o nome no painel, não o endereço. Para mudar o endereço é preciso apagar o serviço e criar de novo (isso não mexe nos dados, que ficam no Supabase). Se quiser outros nomes, troque os dois campos `name:` do `render.yaml` (hoje `fioafio-api` e `fioafio-site`) e faça o push antes de seguir. Use só letras minúsculas, números e hífens. Se o nome já estiver em uso por outra conta, o Render acrescenta um sufixo aleatório ao endereço.
+2. **Libere o repositório.** Em [dashboard.render.com](https://dashboard.render.com), clique em **New > Blueprint**. Se o repositório não aparecer na lista, o Render ainda não tem acesso a ele: clique em **Configure account** (ou **Connect another account**), e no GitHub, em *Repository access*, marque o repositório e salve. O mesmo ajuste existe em GitHub > *Settings > Applications > Installed GitHub Apps > Render > Configure*. Se o repositório for público, a aba *Public Git Repository* aceita a URL direto, sem liberar nada (mas não haverá deploy automático a cada push). Depois, recarregue a página e escolha o repositório. O `render.yaml` cria dois serviços: a API (Python) e o site (estático).
+3. **Preencha as variáveis** na tela *Specified configurations*:
+
+   | Campo | Serviço | O que colocar |
+   |---|---|---|
+   | `SUPABASE_URL` | API e site | A Project URL do Supabase, no formato `https://xxxxxxxx.supabase.co` (botão **Connect**). |
+   | `SUPABASE_ANON_KEY` | API e site | A chave `sb_publishable_...` (*Settings > API Keys*). A mesma nos dois serviços. |
+   | `ANTHROPIC_API_KEY` | API | Opcional: só serve para as sugestões do Claude na análise temática. Pode ficar vazio. Se o Render não aceitar vazio, digite `desativado`: o resto funciona e só as sugestões dão erro. |
+   | `WEB_ORIGIN` | API | O endereço do site, sem barra no final. Ex.: `https://fioafio-site.onrender.com`. |
+   | `API_URL` | site | O endereço da API, sem barra no final. Ex.: `https://fioafio-api.onrender.com`. |
+
+   Nunca coloque a chave `sb_secret_...` em nenhum desses campos.
+4. Clique em **Deploy Blueprint**.
+5. **Confira os endereços reais.** O Render só mostra o endereço definitivo depois de criar cada serviço. Abra os dois, copie o endereço do topo e compare com o que você digitou em `WEB_ORIGIN` e `API_URL`. Se algum for diferente, corrija em *Environment* e rode **Manual Deploy > Deploy latest commit**. No site isso é necessário porque a configuração é gerada durante o build. Se o `WEB_ORIGIN` estiver errado, o login funciona, mas a página Estatística falha com erro de CORS.
+6. Abra o site, entre como administrador e confira a página Estatística.
 
 No plano gratuito, a API "dorme" sem uso e a primeira análise do dia pode levar até 1 minuto.
 
@@ -92,7 +106,7 @@ python -m http.server 8000 -d web
 ## Análise para a publicação
 
 ```bash
-python -m analise.dados exportar          # lê o Supabase com a chave service_role do .env e anonimiza
+python -m analise.dados exportar          # lê o Supabase com a chave secreta do .env e anonimiza
 python publicacao/analise_publicacao.py dados/fioafio_anonimizado.json
 ```
 
@@ -106,7 +120,7 @@ Gera em `saida/` as tabelas (temas com IC 95%, concordância, perfil com q de Be
 
 - Login individual para administradores e conta única para avaliadores, com o nome de quem aplica registrado em cada questionário.
 - As regras de acesso estão no banco (RLS), testadas em `supabase/schema.sql` com um Postgres local.
-- A chave *service_role* só é usada no seu computador, para exportar dados. A chave da API do Claude fica só no servidor.
+- A chave secreta (*service_role* no formato antigo) só é usada no seu computador, para exportar dados. A chave da API do Claude fica só no servidor.
 - Os questionários de pacientes são anônimos. Q2 e Q3 registram o nome (com opção de não se identificar) para controlar o censo; os nomes não aparecem nas análises.
 - Antes de coletar para publicação: aprovação no CEP (Resoluções CNS 466/2012 e 510/2016) e termo de consentimento.
 
