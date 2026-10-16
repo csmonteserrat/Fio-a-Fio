@@ -1,4 +1,4 @@
-/* Projeto Fio a Fio · versão 1.6
+/* Projeto Fio a Fio · versão 1.6.1
  * Adaptador entre o painel e o Supabase.
  *
  * O painel nasceu como artefato do Claude e usa a interface claude.use("db"),
@@ -90,12 +90,24 @@
     canEdit: async function () { var p = perfil || await carregarPerfil(); return !!p && p.papel === "admin"; }
   };
 
+  // Endereço da API sem espaços, com https:// e sem barra no fim (um espaço colado no Render quebra a chamada).
+  function apiBase() {
+    var u = String(C.API_URL || "").replace(/\s+/g, "").replace(/^["']+|["']+$/g, "");
+    if (u && !/^https?:\/\//i.test(u)) u = "https://" + u;
+    return u.replace(/\/+$/, "");
+  }
+
   async function api(caminho, corpo) {
     var s = (await sb.auth.getSession()).data.session;
-    var r = await fetch(C.API_URL.replace(/\/$/, "") + caminho, {
-      method: "POST", headers: { "Content-Type": "application/json", Authorization: s ? "Bearer " + s.access_token : "" },
-      body: JSON.stringify(corpo)
-    });
+    var base = apiBase(), r;
+    try {
+      r = await fetch(base + caminho, {
+        method: "POST", headers: { "Content-Type": "application/json", Authorization: s ? "Bearer " + s.access_token : "" },
+        body: JSON.stringify(corpo)
+      });
+    } catch (e) {
+      throw { code: "unavailable", message: "Não consegui falar com a API em " + base + " (" + (e && e.message || e) + "). Confira a variável API_URL do site no Render" };
+    }
     if (r.status === 429) throw { code: "rate_limited", message: "Muitas solicitações." };
     if (r.status === 401 || r.status === 403) throw { code: "not_granted", message: "Sem permissão." };
     if (!r.ok) { var t = ""; try { t = (await r.json()).detail; } catch (e) {} throw { code: "unavailable", message: t || ("Erro " + r.status) }; }

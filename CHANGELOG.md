@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.6.1 · 2026-10-15
+
+**Correção**
+- Páginas Estatística e Análise temática: o erro "The string did not match the expected pattern" (Safari) aparecia quando o endereço da API tinha um espaço ou caractere estranho colado no Render. O site agora limpa o endereço (espaços, aspas, barras, falta de https://) e, se a chamada falhar, mostra qual endereço tentou chamar. O `build.sh` também limpa espaços das variáveis `API_URL`, `SUPABASE_URL` e `SUPABASE_ANON_KEY`.
+
 ## 1.6.0 · 2026-10-08
 
 **Coleta**
