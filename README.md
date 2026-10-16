@@ -1,6 +1,6 @@
 # Fio a Fio · Levantamento participativo de temas
 
-**Versão 1.6.1** (`VERSION` = 1.6.1) · Centro de Saúde Monte Serrat, Florianópolis (SC)
+**Versão 1.6.2** (`VERSION` = 1.6.2) · Centro de Saúde Monte Serrat, Florianópolis (SC)
 
 Painel para aplicar, digitar e analisar os questionários do Projeto Fio a Fio, que escolhe com a comunidade, os agentes comunitários e a equipe os temas dos vídeos de educação em saúde da sala de espera.
 
@@ -12,7 +12,8 @@ Painel para aplicar, digitar e analisar os questionários do Projeto Fio a Fio, 
 
 | Versão | Data | Onde roda | O que mudou |
 |---|---|---|---|
-| **1.6.1** | 2026-10-15 | Site no Render: https://fioafio-site.onrender.com/ | Correção do erro "The string did not match the expected pattern" na Estatística (endereço da API com espaço). Veja o [CHANGELOG](CHANGELOG.md). |
+| **1.6.2** | 2026-10-15 | Site no Render: https://fioafio-site.onrender.com/ | Estatística: tenta de novo sozinha quando a API acorda com resposta vazia. Veja o [CHANGELOG](CHANGELOG.md). |
+| 1.6.1 | 2026-10-15 | Site no Render | Correção do erro "The string did not match the expected pattern" na Estatística (endereço da API com espaço). Veja o [CHANGELOG](CHANGELOG.md). |
 | 1.6 | 2026-10-08 | Site no Render | Q2: textos novos nas perguntas 3, 5, 6, 7 e 11. Veja o [CHANGELOG](CHANGELOG.md). |
 | 1.5 | 2026-10-08 | Site no Render | Textos das opções do quadro de temas iguais aos do PDF. Veja o [CHANGELOG](CHANGELOG.md). |
 | 1.4 | 2026-10-08 | Site no Render | Q1: botões Não (P6 e P12) e Nenhuma (P7). Veja o [CHANGELOG](CHANGELOG.md). |
@@ -140,7 +141,7 @@ Gera em `saida/` as tabelas (temas com IC 95%, concordância, perfil com q de Be
 - Os questionários de pacientes são anônimos. Q2 e Q3 registram o nome (com opção de não se identificar) para controlar o censo; os nomes não aparecem nas análises.
 - Antes de coletar para publicação: aprovação no CEP (Resoluções CNS 466/2012 e 510/2016) e termo de consentimento.
 
-## Limitações conhecidas da versão 1.6.1
+## Limitações conhecidas da versão 1.6.2
 
 - A senha da conta dos avaliadores é trocada no painel do Supabase, não no site.
 - No link geral do Q3, a lista de nomes não mostra quem já respondeu; o banco recusa a segunda resposta da mesma pessoa.

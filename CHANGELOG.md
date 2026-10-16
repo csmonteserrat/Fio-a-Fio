@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## 1.6.2 · 2026-10-15
+
+**Correção**
+- Estatística e Análise temática: o erro "Unexpected end of JSON input" aparecia quando a API, ainda acordando no plano gratuito do Render, devolvia resposta vazia ou 502/503/504. O site agora tenta até 3 vezes, com pausa de 5 segundos, antes de mostrar o erro. Se ainda falhar, o aviso diz o endereço, o código HTTP e o início da resposta, em vez da mensagem técnica do navegador.
+
 ## 1.6.1 · 2026-10-15
 
 **Correção**

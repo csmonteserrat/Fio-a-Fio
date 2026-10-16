@@ -1,4 +1,4 @@
-/* Projeto Fio a Fio · versão 1.6.1
+/* Projeto Fio a Fio · versão 1.6.2
  * Adaptador entre o painel e o Supabase.
  *
  * O painel nasceu como artefato do Claude e usa a interface claude.use("db"),
@@ -97,21 +97,39 @@
     return u.replace(/\/+$/, "");
   }
 
+  function espera(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
+
+  // Chama a API. No plano gratuito do Render a API dorme e, ao acordar, pode devolver resposta vazia ou 502/503/504:
+  // por isso tenta até 3 vezes, com pausa, antes de desistir.
   async function api(caminho, corpo) {
     var s = (await sb.auth.getSession()).data.session;
-    var base = apiBase(), r;
-    try {
-      r = await fetch(base + caminho, {
-        method: "POST", headers: { "Content-Type": "application/json", Authorization: s ? "Bearer " + s.access_token : "" },
-        body: JSON.stringify(corpo)
-      });
-    } catch (e) {
-      throw { code: "unavailable", message: "Não consegui falar com a API em " + base + " (" + (e && e.message || e) + "). Confira a variável API_URL do site no Render" };
+    var base = apiBase(), r, txt = "", ult = "";
+    for (var tent = 1; tent <= 3; tent++) {
+      try {
+        r = await fetch(base + caminho, {
+          method: "POST", headers: { "Content-Type": "application/json", Authorization: s ? "Bearer " + s.access_token : "" },
+          body: JSON.stringify(corpo)
+        });
+        txt = await r.text();
+      } catch (e) {
+        ult = "Não consegui falar com a API em " + base + " (" + (e && e.message || e) + "). Confira a variável API_URL do site no Render";
+        if (tent < 3) { await espera(5000); continue; }
+        throw { code: "unavailable", message: ult };
+      }
+      if ([502, 503, 504].indexOf(r.status) >= 0 || (r.ok && !txt.trim())) {
+        ult = r.ok ? "A API respondeu vazio (HTTP " + r.status + ") em " + base + caminho : "A API respondeu " + r.status + " em " + base + caminho;
+        if (tent < 3) { await espera(5000); continue; }
+        throw { code: "unavailable", message: ult + ". Ela pode estar acordando; tente de novo em 1 minuto" };
+      }
+      break;
     }
     if (r.status === 429) throw { code: "rate_limited", message: "Muitas solicitações." };
     if (r.status === 401 || r.status === 403) throw { code: "not_granted", message: "Sem permissão." };
-    if (!r.ok) { var t = ""; try { t = (await r.json()).detail; } catch (e) {} throw { code: "unavailable", message: t || ("Erro " + r.status) }; }
-    return r.json();
+    var j = null;
+    try { j = JSON.parse(txt); } catch (e) {}
+    if (!r.ok) throw { code: "unavailable", message: (j && j.detail) || ("Erro " + r.status) };
+    if (j === null) throw { code: "unavailable", message: "Resposta inesperada da API (HTTP " + r.status + "): " + txt.slice(0, 120) };
+    return j;
   }
 
   var sample = async function (prompt, opts) {
